@@ -1,7 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Index HTML</h1>
+
+
+<div class="container text-center">
+
+    <div class="row">
+        <div class="col">
+            <h1>TRIVIA SURVIVOR</h1>
+        </div>
+    </div>
+    
+    {% if not user.is_authenticated %}
+        
+    <div class="row">
+        <div class="col">
+            <button type="button" class="btn btn-primary">LOG IN/SIGN UP</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button type="button" class="btn btn-primary">PLAY AS GUEST</button>
+        </div>
+
+    </div>
+    {% endif %}
+
+        {% if user.is_authenticated %}
+        {{ user }}
+        {% endif %}
+
+</div>
+
+
+
+
 
 
 {% endblock %}

@@ -3,13 +3,6 @@
 /* Importing League Gothic Font for the title from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=League+Gothic&display=swap');
 
-/* Removing initial formatting with wildcard selector */
-* {
-    margin: 0;
-    padding: 0;
-    border: none;
-}
-
 /* Styling the body */
 body {
 	width: 100vw;
@@ -23,4 +16,15 @@ body {
 /* Setting font and size of all h1 elements */
 h1, h2 {
 	font-family: 'League Gothic', sans-serif;
+}
+
+nav {
+	background-color: #000000;
+}
+
+.centered-div {
+	display: flex; 
+	align-items: center; 
+	justify-content: center; 
+	height: 100vh;
 }
