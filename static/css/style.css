@@ -1,0 +1,26 @@
+/* Welcome to the CSS file */
+
+/* Importing League Gothic Font for the title from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&display=swap');
+
+/* Removing initial formatting with wildcard selector */
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+/* Styling the body */
+body {
+	width: 100vw;
+	background-color: #1b1464;
+	background-image: linear-gradient(to bottom right, #1b1464, #000000);
+	background-attachment: fixed;
+	color: #ffffff;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+/* Setting font and size of all h1 elements */
+h1, h2 {
+	font-family: 'League Gothic', sans-serif;
+}

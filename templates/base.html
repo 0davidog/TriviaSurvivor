@@ -1,0 +1,19 @@
+<!-- Connect to Static file Directory -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRIVIA SURVIVOR</title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+</head>
+<body>
+    <h1>Trivia Survivor Base HTML</h1>
+    {% block content %}
+    {% endblock content %}
+</body>
+</html>
