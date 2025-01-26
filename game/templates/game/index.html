@@ -1,41 +1,38 @@
 {% extends "base.html" %}
-
 {% block content %}
 
-
-<div class="container text-center">
-
-    <div class="row">
-        <div class="col">
-            <h1>TRIVIA SURVIVOR</h1>
-        </div>
-    </div>
-    
-    {% if not user.is_authenticated %}
+<div class="container game-container text-center">
         
-    <div class="row">
-        <div class="col">
-            <button type="button" class="btn btn-primary">LOG IN/SIGN UP</button>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col">
-            <button type="button" class="btn btn-primary">PLAY AS GUEST</button>
+        <!-- TITLE -->
+        <div class="row">
+            <div class="col">
+            <h1 class="title-font">TRIVIA SURVIVOR</h1>
+            </div>
         </div>
 
-    </div>
-    {% endif %}
-
+        <!-- MAIN MENU -->
+        {% if not user.is_authenticated %}
+        <div class="row">
+            <div class="col-12">
+                <a class="btn main-menu-btn" href="{% url 'account_login' %}">LOG IN</a>
+            </div>
+        
+            <div class="col-12">
+                <a class="btn main-menu-btn">PLAY AS GUEST</a>
+            </div>
+        </div>
+        {% endif %}
         {% if user.is_authenticated %}
-        {{ user }}
+        <div class="row">
+            <div class="col-12">
+                <a class="btn main-menu-btn">PLAY</a>
+            </div>
+            <div class="col">
+                <a class="btn main-menu-btn" href="{% url 'account_logout' %}">LOG OUT</a>
+            </div>
+        </div>
         {% endif %}
 
 </div>
-
-
-
-
-
 
 {% endblock %}

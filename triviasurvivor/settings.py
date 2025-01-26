@@ -32,9 +32,42 @@ if not SECRET_KEY:
     raise ValueError("SECRET_KEY not set in environment or env.py")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
+
+AUTHENTICATION_BACKENDS = [
+
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+    
+]
+
+SITE_ID = 1
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+if 'DEVELOPMENT' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'videodrome@example.com'
+else:
+    EMAIL_HOST = 'smtp.gmail.com'  # SMTP server address
+    EMAIL_PORT = 587  # Port number for TLS
+    EMAIL_USE_TLS = True  # Use TLS (True for Gmail)
+    EMAIL_HOST_USER = os.environ.get("EMAIL_USER")  # Your email address
+    EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASS")  # Your email password or app password
 
 
 # Application definition

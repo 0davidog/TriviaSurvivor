@@ -18,13 +18,47 @@ h1, h2 {
 	font-family: 'League Gothic', sans-serif;
 }
 
+.title-font {
+	font-size: 3rem;
+}
+
 nav {
 	background-color: #000000;
 }
 
-.centered-div {
+.msg-box {
+	position: fixed;
+	top: 64px;
+}
+
+footer {
+	background-color: #000000;
+}
+
+
+.content-box {
 	display: flex; 
 	align-items: center; 
 	justify-content: center; 
 	height: 100vh;
+	width: 100vw;
 }
+
+.game-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.btn {
+	color: #ffffff;
+	background-color: #000000;
+	margin: 5px;
+}
+
+.main-menu-btn {
+	font-family: 'League Gothic', sans-serif;
+	font-size: 1.5rem;
+	width: 200px;;
+}
+
