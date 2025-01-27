@@ -1,0 +1,64 @@
+/* Welcome to the CSS file */
+
+/* Importing League Gothic Font for the title from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&display=swap');
+
+/* Styling the body */
+body {
+	width: 100vw;
+	background-color: #1b1464;
+	background-image: linear-gradient(to bottom right, #1b1464, #000000);
+	background-attachment: fixed;
+	color: #ffffff;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+/* Setting font and size of all h1 elements */
+h1, h2 {
+	font-family: 'League Gothic', sans-serif;
+}
+
+.title-font {
+	font-size: 3rem;
+}
+
+nav {
+	background-color: #000000;
+}
+
+.msg-box {
+	position: fixed;
+	top: 64px;
+}
+
+footer {
+	background-color: #000000;
+}
+
+
+.content-box {
+	display: flex; 
+	align-items: center; 
+	justify-content: center; 
+	height: 100vh;
+	width: 100vw;
+}
+
+.game-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.btn {
+	color: #ffffff;
+	background-color: #000000;
+	margin: 5px;
+}
+
+.main-menu-btn {
+	font-family: 'League Gothic', sans-serif;
+	font-size: 1.5rem;
+	width: 200px;;
+}
+
