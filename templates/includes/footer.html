@@ -1,5 +1,9 @@
 <footer class="fixed-bottom">
     <div class="container-fluid text-end">
-        <p class="m-0"><small>{{ user }}</small></p>
+        {% if user.is_authenticated %}
+        <p class="m-0"><small>Currently logged in as: {{ user }}{% if user.is_superuser %} [Admin]{% endif %}</small></p>
+        {% else %}
+        <p class="m-0"><small>Not logged in! [<a href="{% url 'account_login' %}">Log in</a>]</small></p>
+        {% endif %}
     </div>
 </footer>

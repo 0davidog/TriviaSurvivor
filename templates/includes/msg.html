@@ -1,0 +1,13 @@
+<!-- Displaying Django message alerts -->
+<div class="container-fluid msg-box">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            {% for message in messages %}
+            <div id="msg" class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                <i class="fa-solid fa-message"></i>&nbsp;&nbsp;&nbsp;&nbsp;&quot;{{ message | safe }}&quot;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="msg-btn" data-bs-dismiss="alert" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

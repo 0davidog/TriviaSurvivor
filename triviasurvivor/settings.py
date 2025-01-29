@@ -34,7 +34,7 @@ if not SECRET_KEY:
     raise ValueError("SECRET_KEY not set in environment or env.py")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 

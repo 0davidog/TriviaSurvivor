@@ -20,13 +20,10 @@
 
     <div class="row">
         <div class="col">
-            {% url 'account_signup' as action_url %}
             <form method="post" action="{% url 'account_signup' %}">
                 {% csrf_token %}
-
             {{ form.non_field_errors | safe }}
             <input type="hidden" name="remember" value="true" />
-            
             <div>
                 <div class="mb-2">
                     {{ form.username.errors | safe }}

@@ -1,0 +1,43 @@
+<!-- Modal Container -->
+<div id="custom-modal" class="modal">
+    <div class="container modal-content">
+        <div class="row mb-2">
+            <div class="col"><h2 class="menu-font">PAUSE MENU</h2></div>
+        </div>
+        <hr>
+        <div class="row mb-2">
+            <div class="col">
+                <a class="btn main-menu-btn" href="">ABOUT THE GAME</a>
+            </div>
+            <div class="col">
+                <a class="btn main-menu-btn" href="">MY PROFILE</a>
+            </div>
+        </div>
+        <hr>
+        <div class="row mb-2">
+            {% if user.is_authenticated %}
+            <div class="col">
+                <p><small>Currently logged in as: {{ user}}</small></p>
+                <a class="btn main-menu-btn" href="{% url 'account_logout' %}">LOG OUT</a>
+            </div>
+            {% else %}
+            <div class="col-12">
+                <p><small>[Not logged in.]</small></p>
+                <a class="btn main-menu-btn" href="{% url 'account_login' %}">LOG IN</a>
+            </div>
+            {% endif %}
+        </div>
+        <hr>
+        <div class="row mb-2">
+            <div class="col">
+                <a class="btn main-menu-btn" href="{% url 'index' %}">RETURN TO HOME SCREEN</a>
+            </div>
+        </div>
+        <hr>
+        <div class="row mb-2">
+            <div class="col">
+                <a class="btn main-menu-btn" href="">EXIT MENU</a>
+            </div>
+        </div>
+    </div>
+</div>
