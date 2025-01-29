@@ -1,0 +1,1 @@
+web: gunicorn triviasurvivor.wsgi --log-file -
