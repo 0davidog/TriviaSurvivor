@@ -1,42 +1,64 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="container game-container text-center">
+<div class="container text-center" id="title-menu"> 
+
+    <!-- TITLE MENU -->
+    <div class="row mb-4">
+        <div class="col">
+        <h1 class="title-font">TRIVIA SURVIVOR</h1>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col">
+            <p>Welcome, to the world of survival trivia. Test your knowledge against the approaching threat.</p>
+        </div>
+    </div>
+
+{% if not user.is_authenticated %}
+    <div class="row">
         
-        <!-- TITLE -->
-        <div class="row mb-4">
-            <div class="col">
-            <h1 class="title-font">TRIVIA SURVIVOR</h1>
-            </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col">
-                <p>Welcome, to the world of survival trivia. Test your knowledge against the approaching threat.</p>
-            </div>
+        <div class="col-12">
+            <a class="btn main-menu-btn" href="{% url 'account_login' %}">LOG IN</a>
         </div>
 
-        <!-- MAIN MENU -->
-        <div class="row">
-            {% if not user.is_authenticated %}
-            <div class="col-12">
-                <a class="btn main-menu-btn" href="{% url 'account_login' %}">LOG IN</a>
-            </div>
-            <div class="col-12">
-                <a class="btn main-menu-btn">PLAY AS GUEST</a>
-            </div>
+        <div class="col-12">
+            <a class="btn main-menu-btn" id="guest-btn">PLAY AS GUEST</a>
         </div>
-        {% endif %}
-        {% if user.is_authenticated %}
-        <div class="row">
-            <div class="col-12">
-                <a class="btn main-menu-btn">PLAY</a>
-            </div>
-            <div class="col">
-                <a class="btn main-menu-btn" href="{% url 'account_logout' %}">LOG OUT</a>
-            </div>
-        </div>
-        {% endif %}
 
+    </div>
+{% endif %}
+
+{% if user.is_authenticated %}
+    <div class="row">
+        <div class="col-12">
+            <a class="btn main-menu-btn" id="play-btn">PLAY</a>
+        </div>
+
+        <div class="col">
+            <a class="btn main-menu-btn" href="{% url 'account_logout' %}">LOG OUT</a>
+        </div>
+
+    </div>
+{% endif %}
+
+</div>
+
+<div class="container hidden" id="guest-play-card">
+    <div class="row">
+        <div class="col text-center">
+            <h1>Playing as Guest...</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container hidden" id="play-card">
+    <div class="row">
+        <div class="col text-center">
+            <h1>Playing as...</h1>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

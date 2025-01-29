@@ -18,6 +18,10 @@ h1, h2 {
 	font-family: 'League Gothic', sans-serif;
 }
 
+.hidden {
+	display: none;
+}
+
 .title-font {
 	font-size: 4rem;
 }
@@ -48,11 +52,7 @@ footer {
 	width: 100vw;
 }
 
-.game-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
+
 
 .btn {
 	color: #ffffff;
