@@ -1,0 +1,34 @@
+<!-- Modal Container -->
+<div id="profile-modal" class="modal">
+
+    <div class="container modal-content">
+
+        <div class="row mb-2">
+            <div class="col">
+                <h2 class="menu-font">MY ACCOUNT</h2>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col">
+                <small>[{{ user }}]</small>
+            </div>
+
+        </div>
+
+            <div class="row">
+
+                <div class="col">
+                    <a class="btn main-menu-btn" href="{% url 'account_email' %}">Email</a>
+                </div>
+
+                <div class="col">
+                    <a class="btn main-menu-btn" href="{% url 'account_change_password' %}">Password</a>
+                </div>
+
+            </div>
+
+    </div>
+
+</div>

@@ -1,16 +1,16 @@
 <!-- Modal Container -->
-<div id="custom-modal" class="modal">
+<div id="menu-modal" class="modal">
     <div class="container modal-content">
         <div class="row mb-2">
-            <div class="col"><h2 class="menu-font">PAUSE MENU</h2></div>
+            <div class="col"><h2 class="menu-font">ESCAPE MENU</h2></div>
         </div>
         <hr>
         <div class="row mb-2">
             <div class="col">
-                <a class="btn main-menu-btn" href="">ABOUT THE GAME</a>
+                <button class="btn main-menu-btn" id="info-btn">ABOUT THE GAME</button>
             </div>
             <div class="col">
-                <a class="btn main-menu-btn" href="">MY PROFILE</a>
+                <button class="btn main-menu-btn" id="profile-btn">MY ACCOUNT</button>
             </div>
         </div>
         <hr>
@@ -30,7 +30,7 @@
         <hr>
         <div class="row mb-2">
             <div class="col">
-                <a class="btn main-menu-btn" href="{% url 'index' %}">RETURN TO HOME SCREEN</a>
+                <a class="btn main-menu-btn" href="{% url 'index' %}">RETURN TO TITLE</a>
             </div>
         </div>
         <hr>
