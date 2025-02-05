@@ -11,6 +11,7 @@ body {
 	background-attachment: fixed;
 	color: #ffffff;
 	text-shadow: 2px 2px 4px #000000;
+	font-family: 'Courier New', monospace;
 }
 
 /* Setting font and size of all h1 elements */
@@ -34,9 +35,16 @@ nav {
 	background-color: #000000;
 }
 
-.msg-box {
+#msg-container {
 	position: fixed;
 	top: 64px;
+	padding-top: 5px;
+}
+
+.alert {
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 20px;
+	border: 1px solid #555555;
 }
 
 footer {
@@ -53,7 +61,6 @@ footer {
 
 .game-container {
 	width: 300px;
-	border: 1px dashed #ffffff;
 	padding: 5px;
 }
 
@@ -64,16 +71,14 @@ footer {
 	cursor: pointer;
 }
 
+.btn-close {
+	color:#ffffff;
+}
+
 .btn:focus {
 	color: #198754;
 	outline: none;
 	box-shadow: none;
-}
-
-.msg-btn {
-	color: #ffffff;
-	background-color: transparent;
-	border: transparent;
 }
 
 .btn:hover, .msg-btn:hover {

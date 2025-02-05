@@ -6,6 +6,7 @@
 <html lang="en">
 
 <head>
+
     <title>TRIVIA SURVIVOR</title>
 
     <meta charset="UTF-8">
@@ -25,13 +26,13 @@
 
     <!-- Custom CSS Link -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
 </head>
 
 <body>
 
     <header>
         {% include 'includes/nav.html' %}
-        {% include 'includes/msg.html' %}
     </header>
 
     <div class="content-box">
@@ -39,9 +40,13 @@
         {% endblock content %}
     </div>
 
+    <!-- Modal HTML Includes -->
     {% include 'includes/menu.html' %}
     {% include 'includes/profile.html' %}
     {% include 'includes/info.html' %}
+
+    <!-- Footer and Message HTML Includes -->
+    {% include 'includes/msg.html' %}
     {% include 'includes/footer.html' %}
 
     <!-- Bootstrap JS -->
