@@ -11,6 +11,7 @@ body {
 	background-attachment: fixed;
 	color: #ffffff;
 	text-shadow: 2px 2px 4px #000000;
+	font-family: 'Courier New', monospace;
 }
 
 /* Setting font and size of all h1 elements */
@@ -18,23 +19,37 @@ h1, h2 {
 	font-family: 'League Gothic', sans-serif;
 }
 
+.hidden {
+	display: none;
+}
+
 .title-font {
-	font-size: 3rem;
+	font-size: 3.5rem;
+}
+
+.menu-font {
+	font-size: 2.5rem;
 }
 
 nav {
 	background-color: #000000;
 }
 
-.msg-box {
+#msg-container {
 	position: fixed;
 	top: 64px;
+	padding-top: 5px;
+}
+
+.alert {
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 20px;
+	border: 1px solid #555555;
 }
 
 footer {
 	background-color: #000000;
 }
-
 
 .content-box {
 	display: flex; 
@@ -45,15 +60,29 @@ footer {
 }
 
 .game-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	width: 300px;
+	padding: 5px;
 }
 
 .btn {
 	color: #ffffff;
 	background-color: #000000;
 	margin: 5px;
+	cursor: pointer;
+}
+
+.btn-close {
+	color:#ffffff;
+}
+
+.btn:focus {
+	color: #198754;
+	outline: none;
+	box-shadow: none;
+}
+
+.btn:hover, .msg-btn:hover {
+	color: #198754;
 }
 
 .main-menu-btn {
@@ -62,3 +91,38 @@ footer {
 	width: 200px;;
 }
 
+.main-menu-btn:focus, .main-menu-btn:hover {
+	font-size: 1.6rem;
+}
+
+/* Modal background (hidden by default) */
+.modal {
+    display: none; /* Hidden initially */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal content */
+.modal-content {
+    background-color: #000000;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    position: relative;
+}
+
+/* Menu/Close buttons */
+#menu-btn {
+	display: block;
+}
+#close-btn {
+	display: none;
+}
