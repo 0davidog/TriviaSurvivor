@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     # Project apps
     'game',
     'data',
+    'user',
 ]
 
 MIDDLEWARE = [
