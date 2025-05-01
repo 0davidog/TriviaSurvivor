@@ -81,6 +81,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_countries',
 
     # Allauth
     'allauth',
@@ -88,6 +89,7 @@ INSTALLED_APPS = [
 
     # Project apps
     'game',
+    'data',
 ]
 
 MIDDLEWARE = [
