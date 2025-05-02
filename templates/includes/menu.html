@@ -1,23 +1,44 @@
+{% load static %}
 <!-- Modal Container -->
 <div id="menu-modal" class="modal">
+
     <div class="container modal-content">
-        <div class="row mb-2">
-            <div class="col"><h2 class="menu-font">ESCAPE MENU</h2></div>
-        </div>
-        <hr>
+        
         <div class="row mb-2">
             <div class="col">
-                <button class="btn main-menu-btn" id="info-btn">ABOUT THE GAME</button>
-            </div>
-            <div class="col">
-                <button class="btn main-menu-btn" id="profile-btn">MY ACCOUNT</button>
+                <h2 class="menu-font">ESCAPE MENU</h2>
             </div>
         </div>
+
         <hr>
-        <div class="row mb-2">
-            {% if user.is_authenticated %}
+        {% if user.is_authenticated %}
+        <div class="row">
+
+            <div class="col-12 username-font text-start">
+                        {{ user_data.user.username }}
+                        {% if user_data.nationality %}
+                            <img src="{{ user_data.nationality.flag }}" alt="{{ user_data.nationality }} flag">
+                        {% endif %}
+            </div>
+
+        </div>
+
+        <div class="row player-info">
+
+            <div class="col-6 text-start">
+                    <img src="{% static icon_url %}" alt="Player icon" class="player-icon">    
+            </div>
+
+            <div class="col-6 condition-box">
+                <img src="{% static 'images/player_condition/condition_green.png' %}" class="player-condition">
+                <p class="username-font condition-text">Condition: <span class="green">HEALTHY</span></p>
+            </div>
+        </div>
+        {% endif %}
+        <hr>
+
+        <div class="row mb-2">{% if user.is_authenticated %}
             <div class="col">
-                <p><small>Currently logged in as: {{ user}}</small></p>
                 <a class="btn main-menu-btn" href="{% url 'account_logout' %}">LOG OUT</a>
             </div>
             {% else %}
@@ -26,9 +47,14 @@
                 <a class="btn main-menu-btn" href="{% url 'account_login' %}">LOG IN</a>
             </div>
             {% endif %}
+        <div class="col">
+            <button class="btn main-menu-btn" id="info-btn">ABOUT THE GAME</button>
         </div>
-        <hr>
-        <div class="row mb-2">
+
+        <div class="col">
+            <button class="btn main-menu-btn" id="profile-btn">MY ACCOUNT</button>
+        </div>
+        
             <div class="col">
                 <a class="btn main-menu-btn" href="{% url 'index' %}">RETURN TO TITLE</a>
             </div>
