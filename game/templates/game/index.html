@@ -40,19 +40,11 @@
 </div>
 
 <div class="container game-container hidden" id="guest-play-card">
-    <div class="row">
-        <div class="col text-center">
-            <h1>Playing as Guest...</h1>
-        </div>
-    </div>
+    {% include 'includes/game.html' %}
 </div>
 
 <div class="container game-container hidden" id="play-card">
-    <div class="row">
-        <div class="col text-center">
-            <h1>Playing as...</h1>
-        </div>
-    </div>
+    {% include 'includes/game.html' %}
 </div>
 
 {% endblock %}
