@@ -42,8 +42,14 @@ class Question(models.Model):
     """
 
     genre = models.ForeignKey(Genre, blank=True, null=True, on_delete=models.SET_NULL)
-    question = models.CharField()
+    question = models.TextField()
     option_a = models.ForeignKey(Film, blank=True, null=True, on_delete=models.SET_NULL, related_name="option_a")
     option_b = models.ForeignKey(Film, blank=True, null=True, on_delete=models.SET_NULL, related_name="option_b")
     option_c = models.ForeignKey(Film, blank=True, null=True, on_delete=models.SET_NULL, related_name="option_c")
     answer = models.ForeignKey(Film, blank=True, null=True, on_delete=models.SET_NULL, related_name="answer")
+
+    def __str__(self):
+        """
+        Question Layout
+        """
+        return f"Q{self.pk}: {self.genre} - {self.question}"
