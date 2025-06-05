@@ -19,16 +19,26 @@ h1, h2 {
 	font-family: 'League Gothic', sans-serif;
 }
 
+.username-font {
+	font-family: 'League Gothic', sans-serif;
+	font-size: 1.5rem;
+}
+
 .hidden {
 	display: none;
 }
 
 .title-font {
-	font-size: 3.5rem;
+	font-family: 'League Gothic', sans-serif;
+	font-size: 2rem;
 }
 
 .menu-font {
 	font-size: 2.5rem;
+}
+
+.green {
+	color: #198754;
 }
 
 nav {
@@ -37,7 +47,7 @@ nav {
 
 #msg-container {
 	position: fixed;
-	top: 64px;
+	top: 70px;
 	padding-top: 5px;
 }
 
@@ -125,4 +135,61 @@ footer {
 }
 #close-btn {
 	display: none;
+}
+
+.player-info {
+	height: 100px;
+}
+
+.player-icon {
+	width: 100px;
+	height: 100px;
+}
+
+.player-condition {
+	height: 100px;
+	position: relative;
+	left: -20px;
+}
+
+.condition-text {
+	position: relative;
+	top: -75px;
+	left: 20px;
+}
+
+.visual-box {
+	width: 290px;
+	padding: 0;
+	z-index: -10000;
+}
+
+.tv-screen {
+	width: 290px;
+	height: 163px;
+	background-color: #198754;
+}
+
+.health-bar {
+	width: 290px;
+	height: 50px;
+	padding: 0;
+	background-color: #555555;
+	z-index: -999;
+}
+
+.quiz-box {
+	width: 290px;
+	padding: 0;
+	z-index: 500;
+}
+
+.quiz-btn {
+	font-family: 'League Gothic', sans-serif;
+	font-size: 1.5rem;
+	width: 245px;;
+}
+
+.quiz-text {
+	background-color: rgba(0, 0, 0, 0.50);
 }
