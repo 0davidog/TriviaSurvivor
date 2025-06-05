@@ -25,7 +25,6 @@ class Film(models.Model):
     year = models.IntegerField(blank=True)
     director = models.CharField(blank=True)
     origin = CountryField(blank_label="(select country)")
-    studio = models.CharField(blank=True)
     genre = models.ForeignKey(Genre, blank=True, null=True, on_delete=models.SET_NULL)
     imdb = models.URLField(blank=True)
 
@@ -33,7 +32,7 @@ class Film(models.Model):
         """
         Film reference.
         """
-        return f"{self.title}{{% if self.year %}}&nbsp;({self.year}){{% endif %}}. Directed by {self.director}. {self.origin}: {self.studio}"
+        return f"{self.title}&nbsp;({self.year}). Directed by {self.director}. {self.origin}"
     
 
 class Question(models.Model):
