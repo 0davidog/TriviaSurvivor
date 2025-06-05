@@ -32,7 +32,7 @@ class Film(models.Model):
         """
         Film reference.
         """
-        return f"{self.title}&nbsp;({self.year}). Directed by {self.director}. {self.origin}"
+        return f"{self.genre}: {self.title} ({self.year}). Directed by {self.director}. {self.origin}"
     
 
 class Question(models.Model):
@@ -41,12 +41,9 @@ class Question(models.Model):
     Model to represent each question to be used in the game.
     """
 
-    answer_choice = [('A', 'A'), ('B', 'B'), ('C,', 'C')]
-
     genre = models.ForeignKey(Genre, blank=True, null=True, on_delete=models.SET_NULL)
     question = models.CharField()
-    option_a = models.CharField()
-    option_b = models.CharField()
-    option_c = models.CharField()
-    answer = models.CharField(choices=answer_choice)
-    film = models.ForeignKey(Film, blank=True, null=True, on_delete=models.SET_NULL)
+    option_a = models.ForeignKey(Film, blank=True, null=True, on_delete=models.SET_NULL, related_name="option_a")
+    option_b = models.ForeignKey(Film, blank=True, null=True, on_delete=models.SET_NULL, related_name="option_b")
+    option_c = models.ForeignKey(Film, blank=True, null=True, on_delete=models.SET_NULL, related_name="option_c")
+    answer = models.ForeignKey(Film, blank=True, null=True, on_delete=models.SET_NULL, related_name="answer")
