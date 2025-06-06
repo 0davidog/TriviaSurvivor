@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from game.views import AuthStatusView
 
 urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
     path('', include('game.urls')),
+    path('api/auth-status/', AuthStatusView.as_view()),
 ]
