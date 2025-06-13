@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const optionC = document.getElementById("option_c");
     const infoBox = document.getElementById("info-box");
     const resultsbox = document.getElementById("results-box");
+    const loadingIcon = document.getElementById("loading-icon");
 
     // Establishing User Information...
     let userName = "";
@@ -89,10 +90,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             button.addEventListener('click', function () {
 
-                selectGameWindow.classList.add("hidden");
-                selectDiffWindow.classList.remove("hidden");
-
                 gameGenre = genre;
+                selectGameWindow.classList.add("hidden");
+                loadingIcon.classList.remove("hidden");
 
                 // Retrieve questions from database filtered by genre
                 fetch(`/api/questions/?genre=${encodeURIComponent(gameGenre)}`).then(response => response.json()).then(data => {
@@ -100,6 +100,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     () => Math.random() - 0.5
                 );
                 
+                loadingIcon.classList.add("hidden");
+                selectDiffWindow.classList.remove("hidden");
+
                 console.log("Fetched Questions:", questionSet);
                 updateInfo();
                 selectDifficulty();
@@ -136,9 +139,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         const options = [
-            {text: `${questionSet[qN].option_a} (${questionSet[qN].option_a})`},
-            {text: `${questionSet[qN].option_b} (${questionSet[qN].option_a})`},
-            {text: `${questionSet[qN].answer.title} (${questionSet[qN].answer.year})`},
+            {text: `${questionSet[qN].option_a.title} (${questionSet[qN].option_a.year})`},
+            {text: `${questionSet[qN].option_b.title} (${questionSet[qN].option_b.year})`},
+            {text: `${questionSet[qN].option_c.title} (${questionSet[qN].option_c.year})`},
         ]
 
         // Shuffle the options
