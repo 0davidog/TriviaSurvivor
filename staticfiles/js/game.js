@@ -1,23 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
     
     // Defining Constants...
-    const titleMenu = document.getElementById("title-menu");
-    const homeBtn = document.getElementById("home-btn");
     const playBtn = document.getElementById("play-btn");
-    const playCard = document.getElementById("play-card");
     const guestBtn = document.getElementById("guest-btn");
-    const genreButtons = document.querySelectorAll('.genre-select-btn');
-    const diffButtons = document.querySelectorAll('.diff-select-btn');
     const selectGameWindow = document.getElementById("select-game");
-    const selectDiffWindow = document.getElementById("select-difficulty");
-    const quizBox = document.getElementById("quiz-box");
     const questionHeader = document.getElementById("question-header");
     const questionText = document.getElementById("question-text");
     const optionA = document.getElementById("option_a");
     const optionB = document.getElementById("option_b");
     const optionC = document.getElementById("option_c");
-    const infoBox = document.getElementById("info-box");
-    const resultsbox = document.getElementById("results-box");
+    
+
+    // function to hide or display div containers
+    // takes window (javascript name) and id (element id) as parameters
+    const windowVis = (window, id) => {
+        window = document.getElementById(id);
+        if (window.classList.contains("hidden")) {
+            window.classList.remove("hidden");
+        } else {
+            window.classList.add("hidden");
+        }
+    }
 
     // Establishing User Information...
     let userName = "";
@@ -36,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Setting adjustable game variables
     let lives = 5;
-    let quizLength = 10;
     let questionNumber = 0;
     let userScore = 0;
 
@@ -47,25 +49,17 @@ document.addEventListener("DOMContentLoaded", function () {
     let gameGenre;
     let gameDiff;
 
-
-    if(homeBtn) {
-        window.addEventListener("keydown", function (e) {
-            if (e.key === "Home") {
-                window.location.href = "/"; // Redirect to the home page
-            }
-        });}
-
     if (playBtn) {
         playBtn.addEventListener("click", function () {
-            titleMenu.classList.add("hidden");
-            playCard.classList.remove("hidden");
+            windowVis('titleMenu', 'title-menu');
+            windowVis('playCard', 'play-card');
             selectGenre();
     });}
 
     if (guestBtn) {
         guestBtn.addEventListener("click", function () {
-            playCard.classList.remove("hidden");
-            titleMenu.classList.add("hidden");
+            windowVis('playCard', 'play-card');
+            windowVis('titleMenu', 'title-menu');
             selectGenre();
     });} 
 
@@ -75,10 +69,12 @@ document.addEventListener("DOMContentLoaded", function () {
             Genre: ${gameGenre} 
             Difficulty: ${gameDiff}
             Score: ${userScore}
+            Lives: ${lives}
             `);
     }
 
     function selectGenre() {
+        const genreButtons = document.querySelectorAll('.genre-select-btn');
             if (genreButtons) {
 
         // Loop through each button and add an event listener
@@ -89,10 +85,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             button.addEventListener('click', function () {
 
-                selectGameWindow.classList.add("hidden");
-                selectDiffWindow.classList.remove("hidden");
-
                 gameGenre = genre;
+                selectGameWindow.classList.add("hidden");
+                windowVis('loadingIcon', 'loading-icon');
 
                 // Retrieve questions from database filtered by genre
                 fetch(`/api/questions/?genre=${encodeURIComponent(gameGenre)}`).then(response => response.json()).then(data => {
@@ -100,6 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     () => Math.random() - 0.5
                 );
                 
+                windowVis('loadingIcon', 'loading-icon');
+
                 console.log("Fetched Questions:", questionSet);
                 updateInfo();
                 selectDifficulty();
@@ -111,34 +108,59 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     }
 
-
     function selectDifficulty() {
+        windowVis('selectDiffWindow', 'select-difficulty');
+        const diffButtons = document.querySelectorAll('.diff-select-btn');
         if (diffButtons) {
         // Loop through each button and add an event listener
         diffButtons.forEach(button => {
             const diff = button.dataset.diff;
             button.addEventListener('click', function () {
                 gameDiff = diff
-                selectDiffWindow.classList.add("hidden");
-                quizBox.classList.remove("hidden");
+                windowVis('selectDiffWindow', 'select-difficulty');
                 updateInfo();
-                displayQuestion();
-            });
+                changeDialogue('Welcome', 'You are now entering the world of survival trivia...');
+            }, { once: true });
         });
     }
     }
-    
 
-    function displayQuestion() {
+    const changeDialogue = (header, dialogue) => {
+        windowVis('dialogueBox', 'dialogue-box');
+        const dialogueHeader = document.getElementById("dialogue-header");
+        const dialogueText = document.getElementById("dialogue-text");
+        const continueBtn = document.getElementById("continue-btn");
+        dialogueHeader.textContent = header;
+        dialogueText.textContent = dialogue;
+        if (continueBtn) {
+            continueBtn.addEventListener('click', function () {
+                windowVis('dialogueBox', 'dialogue-box');
+                checkPoint();
+            }, { once: true })
+        };
+    }
+
+    const checkPoint = () => {
+        if (lives === 0) {
+            endGame('died');
+        } else if (questionNumber + 1 <= questionSet.length) {
+            console.log(`Current Question: ${questionNumber + 1} / ${questionSet.length}`);
+            displayQuestion();
+        } else {
+            endGame('survived');
+        }
+
+    }
+
+    const displayQuestion = () => {
+        windowVis('quizBox', 'quiz-box');
         let qN = questionNumber;
         questionHeader.textContent = `Question ${qN + 1} / ${questionSet.length}`;
         questionText.textContent = `${questionSet[qN].question}`;
-
-
         const options = [
-            {text: `${questionSet[qN].option_a} (${questionSet[qN].option_a})`},
-            {text: `${questionSet[qN].option_b} (${questionSet[qN].option_a})`},
-            {text: `${questionSet[qN].answer.title} (${questionSet[qN].answer.year})`},
+            {text: `${questionSet[qN].option_a.title} (${questionSet[qN].option_a.year})`},
+            {text: `${questionSet[qN].option_b.title} (${questionSet[qN].option_b.year})`},
+            {text: `${questionSet[qN].option_c.title} (${questionSet[qN].option_c.year})`},
         ]
 
         // Shuffle the options
@@ -155,34 +177,55 @@ document.addEventListener("DOMContentLoaded", function () {
     const optionButtons = [optionA, optionB, optionC];
 
     optionButtons.forEach(button => {
-        let userAnswer; 
-        
+        let userAnswer;
         
         button.addEventListener('click', function () {
             console.log("You clicked:", this.textContent);
             userAnswer = this.textContent;
+            windowVis('quizBox', 'quiz-box');
             checkAnswer(userAnswer);
         });
     });
 
-    function checkAnswer(userAnswer) {
+    const checkAnswer = (userAnswer) => {
         let qN = questionNumber;
         let correctAnswer = `${questionSet[qN].answer.title} (${questionSet[qN].answer.year})`
         if (userAnswer === correctAnswer) {
-                console.log("Riiiiiight!");
                 userScore++;
+                questionNumber++;
                 updateInfo();
+                changeDialogue('Correct', 'The creature is stunned by your knowledge.');
             } else {
-                console.log("wrong!");
+                lives--;
+                questionNumber++;
+                updateInfo();
+                changeDialogue('Incorrect', 'The creature takes a step forward...');
             }
-        if (questionNumber + 1 < questionSet.length) {
-            questionNumber++;
-            console.log(`Current Question: ${questionNumber + 1} / ${questionSet.length}`)
-            displayQuestion();
+        
+    }
+
+    const endGame = (result) => {
+        const infoBox = document.getElementById("info-box");
+        const infoHeader = document.getElementById("info-header");
+        windowVis('resultsBox', 'results-box');
+        if (result === 'survived') {
+            infoHeader.textContent = 'You Survived';
+            infoBox.textContent = `
+            User: ${userName}
+            Genre: ${gameGenre}
+            Difficulty: ${gameDiff}
+            Score: ${userScore}
+            `
+        } else if (result === 'died') {
+            infoHeader.textContent = 'You Died';
+            infoBox.textContent = `
+            User: ${userName} 
+            Genre: ${gameGenre} 
+            Difficulty: ${gameDiff}
+            Score: ${userScore}
+            `
         } else {
-            console.log("STOP!");
-            quizBox.classList.add("hidden");
-            resultsbox.classList.remove("hidden");
+            infoHeader.textContent = 'Game Over';
             infoBox.textContent = `
             User: ${userName} 
             Genre: ${gameGenre} 
@@ -193,3 +236,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+
+

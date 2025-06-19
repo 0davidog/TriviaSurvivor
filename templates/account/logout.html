@@ -18,7 +18,7 @@
             <form method="post" action="{% url 'account_logout' %}" no_visible_fields=True>
                 {% csrf_token %}
                 {{ redirect_field }}
-                <button type="submit" class="btn">Sign Out</button>
+                <button type="submit" class="btn main-menu-btn">Sign Out</button>
             </form>  
         </div>
     </div>
