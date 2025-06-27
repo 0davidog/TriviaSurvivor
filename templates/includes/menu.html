@@ -15,7 +15,7 @@
         <div class="row">
 
             <div class="col-12 username-font text-start">
-                        {{ user_data.user.username }}
+                        {{ user }}
                         {% if user_data.nationality %}
                             <img src="{{ user_data.nationality.flag }}" alt="{{ user_data.nationality }} flag">
                         {% endif %}
@@ -34,6 +34,7 @@
                 <p class="username-font condition-text">Condition: <span class="green">HEALTHY</span></p>
             </div>
         </div>
+        
         {% endif %}
         <hr>
 
@@ -44,7 +45,7 @@
             {% else %}
             <div class="col-12">
                 <p><small>[Not logged in.]</small></p>
-                <a class="btn main-menu-btn" href="{% url 'account_login' %}">LOG IN</a>
+                <a class="btn main-menu-btn" href="{% url 'account_login' %}">LOG IN/REGISTER</a>
             </div>
             {% endif %}
         <div class="col hidden">

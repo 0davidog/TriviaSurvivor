@@ -34,7 +34,7 @@ if not SECRET_KEY:
     raise ValueError("SECRET_KEY not set in environment or env.py")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'trivia-survivor-b8948ecec1b2.herokuapp.com']
 
@@ -118,6 +118,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'game.context_processors.user_data_context',
             ],
         },
     },

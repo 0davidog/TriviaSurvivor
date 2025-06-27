@@ -10,6 +10,8 @@ class Genre(models.Model):
     """
 
     genre_name = models.CharField(max_length=100, unique=True)
+    killer_name = models.CharField(max_length=100, blank=True)
+    death_name = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return f"{self.genre_name}"
