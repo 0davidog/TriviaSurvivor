@@ -34,7 +34,7 @@ if not SECRET_KEY:
     raise ValueError("SECRET_KEY not set in environment or env.py")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['127.0.0.1', 'trivia-survivor-b8948ecec1b2.herokuapp.com']
 
