@@ -1,0 +1,125 @@
+// main.js
+import { fetchAuthStatus, fetchQuestions } from './api.js';
+import { toggleVisibility, updateDialogue, updateInfoBox, getEl } from './ui.js';
+import { gameState, resetGame, formatAnswer, updateInfo } from './game.js';
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    // DOM elements
+    const playBtn = getEl("play-btn");
+    const guestBtn = getEl("guest-btn");
+    const restartBtn = getEl("restart-btn");
+    const optionA = getEl("option_a");
+    const optionB = getEl("option_b");
+    const optionC = getEl("option_c");
+
+    // Fetch login state
+    const auth = await fetchAuthStatus();
+    if (auth.is_authenticated) {
+        gameState.userName = auth.username;
+        console.log(`Logged in as: ${gameState.userName}`);
+    }
+
+    // Game flow
+    const handlePlayClick = () => {
+        toggleVisibility("title-menu");
+        toggleVisibility("play-card");
+        setupGenreButtons();
+    };
+
+    const setupGenreButtons = () => {
+        document.querySelectorAll(".genre-select-btn").forEach(btn => {
+            btn.addEventListener('click', async () => {
+                gameState.genre = btn.dataset.genre;
+                toggleVisibility('select-game');
+                toggleVisibility('loading-icon');
+
+                gameState.questions = await fetchQuestions(gameState.genre);
+
+                toggleVisibility('loading-icon');
+                updateInfo();
+                setupDifficultyButtons();
+            }, { once: true });
+        });
+    };
+
+    const setupDifficultyButtons = () => {
+        toggleVisibility('select-difficulty');
+        document.querySelectorAll('.diff-select-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                gameState.difficulty = btn.dataset.diff;
+                toggleVisibility('select-difficulty');
+                updateInfo();
+                showDialogue("Welcome", "You are now entering the world of survival trivia...");
+            }, { once: true });
+        });
+    };
+
+    const showDialogue = (header, text) => {
+        toggleVisibility("dialogue-box");
+        updateDialogue(header, text);
+        const continueBtn = getEl("continue-btn");
+        continueBtn?.addEventListener('click', () => {
+            toggleVisibility("dialogue-box");
+            nextStep();
+        }, { once: true });
+    };
+
+    const nextStep = () => {
+        if (gameState.lives === 0) return endGame('died');
+        if (gameState.questionNumber >= gameState.questions.length) return endGame('survived');
+        displayQuestion();
+    };
+
+    const displayQuestion = () => {
+        const q = gameState.questions[gameState.questionNumber];
+        const questionHeader = getEl("question-header");
+        const questionText = getEl("question-text");
+
+        toggleVisibility("quiz-box");
+        questionHeader.textContent = `Question ${gameState.questionNumber + 1} / ${gameState.questions.length}`;
+        questionText.textContent = q.question;
+
+        const options = [q.option_a, q.option_b, q.option_c]
+            .map(formatAnswer)
+            .sort(() => Math.random() - 0.5);
+
+        [optionA, optionB, optionC].forEach((btn, i) => btn.textContent = options[i]);
+    };
+
+    const checkAnswer = (userAnswer) => {
+        const q = gameState.questions[gameState.questionNumber];
+        const correct = formatAnswer(q.answer);
+        gameState.questionNumber++;
+
+        if (userAnswer === correct) {
+            gameState.score++;
+            showDialogue("Correct", "The creature is stunned by your knowledge.");
+        } else {
+            gameState.lives--;
+            showDialogue("Incorrect", "The creature takes a step forward...");
+        }
+
+        updateInfo();
+        toggleVisibility('quiz-box');
+    };
+
+    const endGame = (result) => {
+        toggleVisibility("results-box");
+        updateInfoBox(gameState, result);
+    };
+
+    // Button listeners
+    playBtn?.addEventListener('click', handlePlayClick);
+    guestBtn?.addEventListener('click', handlePlayClick);
+
+    [optionA, optionB, optionC].forEach(btn => {
+        btn.addEventListener('click', () => checkAnswer(btn.textContent));
+    });
+
+    restartBtn?.addEventListener('click', () => {
+        resetGame();
+        toggleVisibility("results-box");
+        handlePlayClick();
+    });
+});
