@@ -20,7 +20,6 @@ export const updateInfoBox = (state, result) => {
         User: ${state.userName}
         Genre: ${state.genre}
         Difficulty: ${state.difficulty}
-        Score: ${state.score}
     `;
     if (header && box) {
         header.textContent = result === 'survived' ? "You Survived"

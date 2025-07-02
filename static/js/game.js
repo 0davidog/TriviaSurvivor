@@ -3,7 +3,6 @@ export const gameState = {
     userName: "",
     lives: 5,
     questionNumber: 0,
-    score: 0,
     questions: [],
     genre: null,
     difficulty: null
@@ -12,7 +11,6 @@ export const gameState = {
 export const resetGame = () => {
     gameState.lives = 5;
     gameState.questionNumber = 0;
-    gameState.score = 0;
     gameState.questions = [];
     gameState.genre = null;
     gameState.difficulty = null;
@@ -25,7 +23,6 @@ export const updateInfo = () => {
         User: ${gameState.userName}
         Genre: ${gameState.genre}
         Difficulty: ${gameState.difficulty}
-        Score: ${gameState.score}
         Lives: ${gameState.lives}
     `);
 };

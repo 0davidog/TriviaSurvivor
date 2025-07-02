@@ -93,7 +93,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         gameState.questionNumber++;
 
         if (userAnswer === correct) {
-            gameState.score++;
             showDialogue("Correct", "The creature is stunned by your knowledge.");
         } else {
             gameState.lives--;
