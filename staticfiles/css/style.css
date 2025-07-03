@@ -30,7 +30,7 @@ h1, h2 {
 
 .title-font {
 	font-family: 'League Gothic', sans-serif;
-	font-size: 2rem;
+	font-size: 1.7rem;
 }
 
 .menu-font {
@@ -43,6 +43,7 @@ h1, h2 {
 
 nav {
 	background-color: #000000;
+	height: 60px;
 }
 
 #msg-container {
@@ -57,10 +58,6 @@ nav {
 	border: 1px solid #555555;
 }
 
-footer {
-	background-color: #000000;
-}
-
 .content-box {
 	display: flex; 
 	align-items: center; 
@@ -70,7 +67,7 @@ footer {
 }
 
 .game-container {
-	width: 300px;
+	width: 325px;
 	padding: 5px;
 }
 
@@ -148,11 +145,16 @@ footer {
 
 .quiz-btn {
 	font-family: 'League Gothic', sans-serif;
-	font-size: 1.5rem;
-	width: 245px;;
+	font-size: 1.25rem;
+	width: 300px;
+}
+
+#question-header {
+	font-size: 1.25rem;
 }
 
 .quiz-text {
+	font-size: 0.8rem;;
 	background-color: rgba(0, 0, 0, 0.50);
 }
 
@@ -167,6 +169,25 @@ footer {
 	border-radius: 20px;
 }
 
+.genre-btn-zombie {
+	background-image: url('../images/creatures/zombie_1.webp');
+	background-size:contain;
+	background-repeat: no-repeat;
+  	background-position: center;
+}
+
+.genre-select-btn {
+	background-color: rgba(0, 0, 0, 0.50);
+}
+
+#image-box {
+	height: 176px;
+}
 #creature-view {
 	width: 100%;
+}
+
+.counters {
+	position: relative;
+	top: -15px;
 }

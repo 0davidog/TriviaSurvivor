@@ -1,7 +1,7 @@
 // main.js
-import { fetchAuthStatus, fetchQuestions } from './api.js';
+import { fetchAuthStatus, fetchCreature, fetchQuestions } from './api.js';
 import { toggleVisibility, updateDialogue, updateInfoBox, updateLives, updateScore, getEl } from './ui.js';
-import { gameState, resetGame, formatAnswer, updateInfo, updateImage } from './game.js';
+import { gameState, resetGame, formatAnswer, updateImage } from './game.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
 
@@ -28,16 +28,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
 
     const setupGenreButtons = () => {
+
+        document.querySelectorAll(".genre-btn").forEach(btn => {
+            let creature = btn.dataset.creature.toLowerCase();
+            btn.classList.add(`genre-btn-${creature}`);
+        })
+        
         document.querySelectorAll(".genre-select-btn").forEach(btn => {
+            
             btn.addEventListener('click', async () => {
                 gameState.genre = btn.dataset.genre;
                 toggleVisibility('select-game');
                 toggleVisibility('loading-icon');
-
                 gameState.questions = await fetchQuestions(gameState.genre);
                 updateImage(gameState.genre);
                 toggleVisibility('loading-icon');
-                updateInfo();
                 setupDifficultyButtons();
             }, { once: true });
         });
@@ -49,7 +54,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             btn.addEventListener('click', () => {
                 gameState.difficulty = btn.dataset.diff;
                 toggleVisibility('select-difficulty');
-                updateInfo();
                 showDialogue("Welcome", "You are now entering the world of survival trivia...");
                 toggleVisibility("image-box");
                 updateLives(gameState.lives);
@@ -106,12 +110,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             showDialogue("Incorrect", "The creature takes a step forward...");
         }
 
-        updateInfo();
         toggleVisibility('quiz-box');
     };
 
-    const endGame = (result) => {
-        toggleVisibility("image-box");
+    const endGame = (result) => {  
         toggleVisibility("results-box");
         updateInfoBox(gameState, result);
     };
@@ -125,8 +127,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     restartBtn?.addEventListener('click', () => {
-        resetGame();
         toggleVisibility("results-box");
-        handlePlayClick();
+        toggleVisibility('loading-icon');
+        resetGame(gameState.genre, gameState.difficulty);
+        updateLives(gameState.lives);
+        updateScore(gameState.score);
+        updateImage(gameState.genre);
+        toggleVisibility('loading-icon');
+        displayQuestion();
     });
 });

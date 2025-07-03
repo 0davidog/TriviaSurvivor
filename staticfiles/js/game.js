@@ -1,6 +1,6 @@
 // game.js
 import { getEl } from "./ui.js";
-import { fetchCreature } from "./api.js";
+import { fetchCreature, fetchQuestions } from "./api.js";
 
 export const gameState = {
     userName: "",
@@ -12,26 +12,18 @@ export const gameState = {
     difficulty: null
 };
 
-export const resetGame = () => {
+export const resetGame = async (genre, diff) => {
     gameState.lives = 5;
     gameState.score = 0;
     gameState.questionNumber = 0;
-    gameState.questions = [];
-    gameState.genre = null;
-    gameState.difficulty = null;
+    gameState.questions = await fetchQuestions(genre);
+    console.log(gameState.questions);
+    gameState.genre = genre;
+    gameState.difficulty = diff;
 };
+
 
 export const formatAnswer = (movie) => `${movie.title} (${movie.year})`;
-
-export const updateInfo = () => {
-    console.log(`
-        User: ${gameState.userName}
-        Genre: ${gameState.genre}
-        Difficulty: ${gameState.difficulty}
-        Lives: ${gameState.lives}
-        Score: ${gameState.score}
-    `);
-};
 
 export const updateImage = async (genre) => {
     try {

@@ -5,7 +5,7 @@
 
     <h2 class="mb-4">SELECT GAME GENRE</h2>
     {% for genre in genres %}
-    <div class="col-12 genre-btn mb-4 d-flex flex-column align-items-center justify-content-center">
+    <div class="col-12 genre-btn mb-4 d-flex flex-column align-items-center justify-content-center" data-creature="{{ genre.creature_name }}">
         <button class="btn main-menu-btn genre-select-btn" data-genre="{{ genre }}">{{ genre }}</button>
     </div>
     {% endfor %}
@@ -22,15 +22,18 @@
 
 <!-- GAME START -->
 
-<div class="row mb-2 hidden" id="image-box">
-    <div class="col-12">
+<div class="row hidden p-0" id="image-box">
+    <div class="col-12 p-0 text-center">
         <img src="{% static 'images/creatures/zombie_0.webp' %}" alt="Creature Approaching" id="creature-view">
     </div>
-    <div class="col-6 text-center">
-        <h2 class="p-2" id="life-counter">Lives:</h2>
-    </div>
+</div>
+
+<div class="row counters p-0">
     <div class="col-6 text-start">
-        <h2 class="p-2" id="score-counter">Score:</h2>
+        <p class="ps-2" id="life-counter"></p>
+    </div>
+    <div class="col-6 text-end">
+        <p class="pe-2 text-warning" id="score-counter"></p>
     </div>
 </div>
 
@@ -48,10 +51,9 @@
 
 
 <div class="row quiz-box hidden" id="quiz-box">
-
-    <div class="col-12 quiz-text"><h1 id="question-header">Question</h1></div>
+    <div class="col-12 quiz-text pt-2"><h1 id="question-header">Question</h1></div>
     <div class="col-12 quiz-text"><p id="question-text">question text</p></div>
-    <div class="">
+    <div class="mt-2">
         <div class="col-12 text-center">
             <button class="btn quiz-btn" id="option_a">option_a</button>
         </div>
@@ -66,8 +68,14 @@
 </div>
 
 <div class="row hidden text-center" id="results-box">
-    <div class="col-12 quiz-text">
+    <div class="col-12 quiz-text mb-2">
         <h1 id="info-header">Game Over</h1>
         <p id="info-box"></p>
+    </div>
+    <div class="col-12">
+        <button class="btn main-menu-btn mb-2" id="restart-btn">REPLAY</button>
+    </div>
+    <div class="col-12">
+        <a class="btn main-menu-btn" href="{% url 'index' %}">RETURN TO TITLE</a>
     </div>
 </div>
