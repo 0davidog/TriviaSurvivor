@@ -61,3 +61,12 @@ def get_filtered_questions(request):
             'questions': serializer.data
         }
     )
+
+
+@api_view(['GET'])
+def get_creature_name(request):
+    genre_name = request.GET.get('genre')
+    print(genre_name)
+    genre = Genre.objects.get(genre_name=genre_name)
+    print(genre)
+    return Response({'creature_name': genre.creature_name})

@@ -22,4 +22,5 @@ from .views import get_filtered_questions
 urlpatterns = [
     path('', views.index, name='index'),
     path('api/questions/', get_filtered_questions),
+    path('api/creature-name/', views.get_creature_name, name='get_creature_name'),
 ]

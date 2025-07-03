@@ -146,18 +146,6 @@ footer {
 	height: 100px;
 }
 
-.player-condition {
-	height: 100px;
-	position: relative;
-	left: -20px;
-}
-
-.condition-text {
-	position: relative;
-	top: -75px;
-	left: 20px;
-}
-
 .quiz-btn {
 	font-family: 'League Gothic', sans-serif;
 	font-size: 1.5rem;
@@ -177,4 +165,8 @@ footer {
 	height: 150px;
 	border: 1px solid #555555;
 	border-radius: 20px;
+}
+
+#creature-view {
+	width: 100%;
 }

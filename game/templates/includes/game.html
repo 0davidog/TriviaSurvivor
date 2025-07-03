@@ -21,6 +21,19 @@
 </div>
 
 <!-- GAME START -->
+
+<div class="row mb-2 hidden" id="image-box">
+    <div class="col-12">
+        <img src="{% static 'images/creatures/zombie_0.webp' %}" alt="Creature Approaching" id="creature-view">
+    </div>
+    <div class="col-6 text-center">
+        <h2 class="p-2" id="life-counter">Lives:</h2>
+    </div>
+    <div class="col-6 text-start">
+        <h2 class="p-2" id="score-counter">Score:</h2>
+    </div>
+</div>
+
 <div class="row dialogue-box hidden" id="dialogue-box">
     <div class="col-12 quiz-text"><h1 id="dialogue-header">Dialogue Header</h1></div>
     <div class="col-12 quiz-text mb-4">
@@ -32,6 +45,7 @@
         <button class="btn main-menu-btn" id="continue-btn">Continue</button>
     </div>
 </div>
+
 
 <div class="row quiz-box hidden" id="quiz-box">
 

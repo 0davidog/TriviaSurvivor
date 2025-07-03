@@ -1,7 +1,7 @@
 // main.js
 import { fetchAuthStatus, fetchQuestions } from './api.js';
-import { toggleVisibility, updateDialogue, updateInfoBox, getEl } from './ui.js';
-import { gameState, resetGame, formatAnswer, updateInfo } from './game.js';
+import { toggleVisibility, updateDialogue, updateInfoBox, updateLives, updateScore, getEl } from './ui.js';
+import { gameState, resetGame, formatAnswer, updateInfo, updateImage } from './game.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
 
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 toggleVisibility('loading-icon');
 
                 gameState.questions = await fetchQuestions(gameState.genre);
-
+                updateImage(gameState.genre);
                 toggleVisibility('loading-icon');
                 updateInfo();
                 setupDifficultyButtons();
@@ -51,6 +51,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 toggleVisibility('select-difficulty');
                 updateInfo();
                 showDialogue("Welcome", "You are now entering the world of survival trivia...");
+                toggleVisibility("image-box");
+                updateLives(gameState.lives);
+                updateScore(gameState.score);
             }, { once: true });
         });
     };
@@ -93,9 +96,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         gameState.questionNumber++;
 
         if (userAnswer === correct) {
+            gameState.score++;
+            updateScore(gameState.score);
             showDialogue("Correct", "The creature is stunned by your knowledge.");
         } else {
             gameState.lives--;
+            updateLives(gameState.lives);
+            updateImage(gameState.genre);
             showDialogue("Incorrect", "The creature takes a step forward...");
         }
 
@@ -104,6 +111,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
 
     const endGame = (result) => {
+        toggleVisibility("image-box");
         toggleVisibility("results-box");
         updateInfoBox(gameState, result);
     };

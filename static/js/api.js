@@ -9,3 +9,8 @@ export async function fetchQuestions(genre) {
     const data = await res.json();
     return data.questions.sort(() => Math.random() - 0.5);
 }
+
+export async function fetchCreature(genre) {
+    const res = await fetch(`/api/creature-name/?genre=${encodeURIComponent(genre)}`);
+    return await res.json();
+}

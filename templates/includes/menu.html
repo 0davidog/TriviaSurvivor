@@ -14,7 +14,7 @@
         
         <div class="row">
 
-            <div class="col-12 username-font text-start">
+            <div class="col-12 username-font">
                         {{ user }}
                         {% if user_data.nationality %}
                             <img src="{{ user_data.nationality.flag }}" alt="{{ user_data.nationality }} flag">
@@ -25,14 +25,10 @@
 
         <div class="row player-info">
 
-            <div class="col-6 text-start">
+            <div class="col-12">
                     <img src="{% static icon_url %}" alt="Player icon" class="player-icon">    
             </div>
 
-            <div class="col-6 condition-box">
-                <img src="{% static 'images/player_condition/condition_green.png' %}" class="player-condition">
-                <p class="username-font condition-text">Condition: <span class="green">HEALTHY</span></p>
-            </div>
         </div>
         
         {% endif %}
