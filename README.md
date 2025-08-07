@@ -29,3 +29,7 @@ The theme and title chosen reminded me of the the playstation game series 'Resid
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+
+## Changelog
+
+To view project changes visit the [CHANGELOG](./CHANGELOG.md) file.
