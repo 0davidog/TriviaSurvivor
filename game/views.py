@@ -9,6 +9,11 @@ from .serializers import QuestionSerializer
 class AuthStatusView(APIView):
     """
     A view to pass authentication data to javascript
+    Uses class-based views via APIView from rest_framework.views.
+    The get method is triggered on HTTP GET requests.
+    It checks if a user is authenticated:
+    Returns is_authenticated as a boolean.
+    Returns username if authenticated, otherwise None.
     """
     
     def get(self, request):
@@ -20,6 +25,10 @@ class AuthStatusView(APIView):
 def index(request):
     """
     A view to return the index page.
+    Set up empty user_data and icon_url variables.
+    IF user is logged in
+    THEN TRY get user data and icon url.
+    ELSE leave variables empty.
     """
 
     user_data = None
@@ -49,6 +58,12 @@ def index(request):
 
 @api_view(['GET'])
 def get_filtered_questions(request):
+    """
+    Function-based view using the @api_view(['GET']) decorator from DRF.
+    Retrieves a genre from query parameters (?genre=zombies, etc.).
+    Filters questions by genre, if provided.
+    Serializes and returns the data as JSON.
+    """
     genre = request.GET.get('genre')
 
     queryset = Question.objects.all()
@@ -65,6 +80,12 @@ def get_filtered_questions(request):
 
 @api_view(['GET'])
 def get_creature_name(request):
+    """
+    Function-based view using the @api_view(['GET']) decorator from DRF. 
+    Retrieves a genre from query parameters (?genre=zombies, etc.).
+    Fetches the Genre model instance and returns its creature_name.
+    Returns the data as JSON
+    """
     genre_name = request.GET.get('genre')
     genre = Genre.objects.get(genre_name=genre_name)
     return Response({'creature_name': genre.creature_name})
