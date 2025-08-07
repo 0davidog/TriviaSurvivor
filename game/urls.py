@@ -17,10 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
-from .views import get_filtered_questions
+from .views import AuthStatusView, get_filtered_questions, get_creature_name
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('api/questions/', get_filtered_questions),
-    path('api/creature-name/', views.get_creature_name, name='get_creature_name'),
+    path('api/auth-status/', AuthStatusView.as_view()),
+    path('api/questions/', get_filtered_questions, name='get_filtered_questions'),
+    path('api/creature-name/', get_creature_name, name='get_creature_name'),
 ]
