@@ -34,7 +34,7 @@ class Film(models.Model):
         """
         Film reference.
         """
-        return f"{self.genre}: {self.title} ({self.year}). Directed by {self.director}. {self.origin}"
+        return f"{self.title} ({self.year}). Directed by {self.director}. {self.origin} | {self.genre}"
     
 
 class Question(models.Model):

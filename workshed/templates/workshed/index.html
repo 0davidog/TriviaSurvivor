@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container game-container">
+    <div class="row">
+        <div class="col text-center">
+            <h1>Workshed</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <p>
+                This is the Admin section. Here you can create, read, update and delete the film, genre and question lists that form the backbone of Trivia Survivor. You will also be able to manage User data.
+            </p>
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-12">
+            <a class="btn main-menu-btn" href="{% url 'questions' %}">VIEW/EDIT QUESTIONS</a>
+        </div>
+        <div class="col-12">
+            <a class="btn main-menu-btn" href="{% url 'films' %}">VIEW/EDIT FILM LIST</a>
+        </div>
+        <div class="col-12">
+            <a class="btn main-menu-btn hidden">VIEW/EDIT GENRES</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

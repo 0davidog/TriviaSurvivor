@@ -55,6 +55,11 @@
             <div class="col">
                 <a class="btn main-menu-btn" href="{% url 'index' %}">RETURN TO TITLE</a>
             </div>
+            {% if user.is_staff %}
+            <div class="col">
+                <a class="btn main-menu-btn" href="{% url 'workshed' %}">ADMIN</a>
+            </div>
+            {% endif %}
         </div>
         <hr>
     </div>
