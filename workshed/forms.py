@@ -1,5 +1,5 @@
 from django import forms
-from data.models import Film, Question
+from data.models import Film, Question, Genre
 
 class FilmForm(forms.ModelForm):
 
@@ -29,4 +29,16 @@ class QuestionForm(forms.ModelForm):
             'option_b',
             'option_c',
             'answer',
+        }
+
+
+class GenreForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Genre
+
+        fields = {
+            'genre_name',
+            'creature_name',
         }

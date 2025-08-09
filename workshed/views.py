@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
 from django.db.models import Q
 from data.models import Film, Genre, Question
-from .forms import FilmForm, QuestionForm
+from .forms import FilmForm, QuestionForm, GenreForm
 
 # Create your views here.
 @user_passes_test(lambda u: u.is_staff)
@@ -61,7 +61,7 @@ def film_detail(request, id):
     form = None
 
     if request.method == 'POST':
-        film_form = FilmForm(data=request.POST)
+        film_form = FilmForm(data=request.POST, instance=film)
         if film_form.is_valid():
             film = film_form.save(commit=False)
             film.save()
@@ -167,3 +167,71 @@ def new_question(request):
     }
 
     return render(request, 'workshed/new_question.html', context)
+
+
+@user_passes_test(lambda u: u.is_staff)
+def question_detail(request, id):
+
+    question = get_object_or_404(Question, id=id)
+    
+    form = None
+
+    if request.method == 'POST':
+        question_form = QuestionForm(data=request.POST, instance=question)
+        if question_form.is_valid():
+            question = question_form.save(commit=False)
+            question.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                f"Question data edit successful"
+                )
+            form = QuestionForm(instance=question)
+    else:
+        form = QuestionForm(instance=question)
+
+    context = {
+        'question': question,
+        'form': form,
+    }
+
+    return render(request, 'workshed/question_detail.html', context)
+
+
+@user_passes_test(lambda u: u.is_staff)
+def genre_list(request):
+
+    genres = Genre.objects.all()
+
+    context = {
+        'genres': genres,
+    }
+
+    return render(request, 'workshed/genre_list.html', context)
+
+
+@user_passes_test(lambda u: u.is_staff)
+def genre_detail(request, id):
+
+    genre = get_object_or_404(Genre, id=id)
+    
+    form = None
+
+    if request.method == 'POST':
+        genre_form = GenreForm(data=request.POST, instance=genre)
+        if genre_form.is_valid():
+            genre = genre_form.save(commit=False)
+            genre.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                f"Genre data edit successful"
+                )
+            form = GenreForm(instance=genre)
+    else:
+        form = GenreForm(instance=genre)
+
+    context = {
+        'genre': genre,
+        'form': form,
+    }
+
+    return render(request, 'workshed/genre_detail.html', context)

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container game-container">
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <a href="{% url 'questions' %}">Return to list</a>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12"><h1>{{ question }}</h1></div>
+    </div>
+
+    <div class="row">
+        <form method="post">
+            {% csrf_token %}
+            <div class="col-12"><h2>Question::</h2></div>
+            <div class="col-12 mb-2">{{ form.question }}</div>
+            <div class="col-12"><h2>Option A:</h2></div>
+            <div class="col-12 mb-2">{{ form.option_a }}</div>
+            <div class="col-12"><h2>Option B:</h2></div>
+            <div class="col-12 mb-2">{{ form.option_b }}</div>
+            <div class="col-12"><h2>Option C:</h2></div>
+            <div class="col-12 mb-2">{{ form.option_c }}</div>
+            <div class="col-12"><h2>Answer:</h2></div>
+            <div class="col-12 mb-2">{{ form.answer }}</div>
+
+            <div class="col-12 mb-4"><button type="submit" class="btn main-menu-btn">Save</button></div>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

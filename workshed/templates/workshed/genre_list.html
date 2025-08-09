@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container game-container mt-4">
+
+    <div class="row">
+        <div class="col-12">
+            <a href="{% url 'workshed' %}">Back</a>
+        </div>
+    </div>
+
+    <div class="row mb-4 text-center">
+        <div class="col">
+            <h1>Genres</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <hr>
+        </div>
+    </div>
+
+    <div class="row mb-4 text-center">
+        <div class="col-12">
+            <h2><small>Edit genre details:</small></h2>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <table class="table table-dark">
+            <tbody>
+                {% for genre in genres %}
+                <tr>
+                    <td><a href="{% url 'genre_detail' genre.id %}">{{ genre.genre_name }}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+
+</div>
+
+            
+
+        
+
+    
+
+
+
+
+
+
+{% endblock %}
