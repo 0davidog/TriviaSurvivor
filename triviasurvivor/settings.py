@@ -36,7 +36,7 @@ if not SECRET_KEY:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['127.0.0.1', 'trivia-survivor-b8948ecec1b2.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'trivia-survivor-b8948ecec1b2.herokuapp.com', 'www.triviasurvivor.com', 'triviasurvivor.com']
 
 AUTHENTICATION_BACKENDS = [
 
