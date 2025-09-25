@@ -3,21 +3,30 @@
 <!-- SELECT GAME GENRE -->
 <div class="row select-game flex-column align-items-center justify-content-center text-center mb-5" id="select-game">
 
-    <h2 class="mb-4">SELECT GAME GENRE</h2>
+    <div class="col-12 mb-2">
+        <h2>SELECT GAME GENRE</h2>
+    </div>
+
     {% for genre in genres %}
     <div class="col-12 genre-btn mb-4 d-flex flex-column align-items-center justify-content-center" data-creature="{{ genre.creature_name }}">
         <button class="btn main-menu-btn genre-select-btn" data-genre="{{ genre }}">{{ genre }}</button>
     </div>
     {% endfor %}
+    
 </div>
 
 <!-- SELECT GAME DIFFICULTY -->
 <div class="row select-difficulty flex-column align-items-center justify-content-center text-center mb-5 hidden" id="select-difficulty">
+    <div class="col-12 mb-2">
+        <h2>SELECT DIFFICULTY</h2>
+    </div>
 
-    <h2 class="mb-4">SELECT DIFFICULTY</h2>
+    <div class="col-12">
         <button class="btn main-menu-btn diff-select-btn hidden"data-diff="easy">EASY</button>
         <button class="btn main-menu-btn diff-select-btn"data-diff="normal">NORMAL</button>
         <button class="btn main-menu-btn diff-select-btn hidden" data-diff="hard">HARD</button>
+    </div>
+        
 </div>
 
 <!-- GAME START -->

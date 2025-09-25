@@ -111,14 +111,14 @@ nav {
     top: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.95);
     justify-content: center;
     align-items: center;
 }
 
 /* Modal content */
 .modal-content {
-    background-color: #000000;
+    background-color: transparent;
     padding: 20px;
     border-radius: 8px;
     width: 300px;
@@ -181,7 +181,8 @@ nav {
 }
 
 #image-box {
-	height: 176px;
+	background-color: rgba(0, 0, 0, 0.50);
+	height: 200px;
 }
 #creature-view {
 	width: 100%;
@@ -189,7 +190,7 @@ nav {
 
 .counters {
 	position: relative;
-	top: -15px;
+	top: -25px;
 }
 
 #id_origin, #id_title, #id_director, #id_imdb, #id_option_a, #id_option_b, #id_option_c, #id_answer, #id_question {

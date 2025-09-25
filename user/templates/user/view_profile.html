@@ -2,65 +2,62 @@
 {% load static %}
 
 {% block content %}
-<div class="container game-container">
+<div class="container game-container flex-column align-items-center justify-content-center text-center">
 
-    <div class="row mb-2">
-            <div class="col">
+    <div class="row">
+
+            <div class="col-12 mb-2">
                 <h2 class="menu-font">MY ACCOUNT</h2>
             </div>
-        </div>
 
-        <hr>
+        </div>
 
 {% if user.is_authenticated %}
 
-        <div class="row mb-4">
+        <div class="row">
 
-            <div class="col-6 username-font">
+            <div class="col-6 username-font text-end mb-2">
                 USERNAME:
             </div>
-            <div class="col-6 username-font">
-                {{ user.username }}
+            <div class="col-6 username-font text-start mb-2">
+                {{ user.username }}{% if user_data.nationality %}<img src="{{ user_data.nationality.flag }}" alt="{{ user_data.nationality }} flag">{% endif %}
             </div>
             
         </div>
 
-        <hr>
-
         <div class="row">
-            <div class="col-6 username-font">
+            <div class="col-6 username-font text-end mb-2">
                 ICON:
             </div>
-            <div class="col-6">
-                    <img src="{% static icon_url %}" alt="Player icon" class="player-icon">    
+            <div class="col-6 text-start mb-2">
+                <a href="">
+                    <img src="{% static icon_url %}" alt="Player icon" class="player-icon">
+                </a>
             </div>
         </div>
 
-        <hr>
-
         <div class="row mb-2">
-            <div class="col-6 username-font">
+            <div class="col-6 username-font text-start mb-2">
                 BIO:
             </div>
-            <div class="col-6">
+            <div class="col-6 mb-2">
                 
             </div>
         </div>
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 text-start mb-2">
                 {{ user_data.bio }}
             </div>
         </div>
 
-        <hr>
 
-            <div class="row">
+            <div class="row mt-4">
 
-                <div class="col">
+                <div class="col-12">
                     <a class="btn main-menu-btn" href="{% url 'account_email' %}">Manage Email</a>
                 </div>
 
-                <div class="col">
+                <div class="col-12">
                     <a class="btn main-menu-btn" href="{% url 'account_change_password' %}">Change Password</a>
                 </div>
 

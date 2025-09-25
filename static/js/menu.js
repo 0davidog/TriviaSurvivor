@@ -1,9 +1,13 @@
+// menu.js ('Escape menu' navigvation modal)
+
+import { getEl } from "./ui.js";
+
 document.addEventListener("DOMContentLoaded", function () {
-    const menuModal = document.getElementById("menu-modal");
-    const profileModal = document.getElementById("profile-modal");
-    const infoModal = document.getElementById("info-modal");
-    const menuBtn = document.getElementById("menu-btn");
-    const closeBtn = document.getElementById("close-btn");
+    const menuModal = getEl("menu-modal");
+    const profileModal = getEl("profile-modal");
+    const infoModal = getEl("info-modal");
+    const menuBtn = getEl("menu-btn");
+    const closeBtn = getEl("close-btn");
 
     // Open modal
     menuBtn.addEventListener("click", function () {
@@ -13,14 +17,14 @@ document.addEventListener("DOMContentLoaded", function () {
         if (profileModal) {
             profileModal.style.display = "none";
         }
-    });
+    }, { once: true });
 
     // Close modal
     closeBtn.addEventListener("click", function () {
         menuModal.style.display = "none";
         closeBtn.style.display = "none";
         menuBtn.style.display = "block";
-    });
+    }, { once: true });
 
     // Close modal if user presses esc key
     window.addEventListener("keydown", function (e) {
@@ -43,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 closeBtn.style.display = "block";
             }   
         }
-    });
+    }, { once: true });
 
     // Close modal if user clicks outside the modal content
     window.addEventListener("click", function (event) {
@@ -52,6 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
             closeBtn.style.display = "none";
             menuBtn.style.display = "block";
         }
-    });
+    }, { once: true });
  
 });
