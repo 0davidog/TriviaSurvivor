@@ -1,27 +1,23 @@
-"""
-URL configuration for triviasurvivor project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+# triviasurvivor/urls.py
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 from . import views
-from .views import AuthStatusView, get_filtered_questions, get_creature_name
+from .views import AuthStatusView, get_filtered_questions, get_creature_name, FlagViewSet
+
+# Create a DRF router
+router = DefaultRouter()
+router.register(r'flag_question', FlagViewSet)
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('api/auth-status/', AuthStatusView.as_view()),
+    path('', views.index, name='index'),  # homepage
+
+    # API endpoints
+    path('api/auth-status/', AuthStatusView.as_view(), name='auth_status'),
     path('api/questions/', get_filtered_questions, name='get_filtered_questions'),
     path('api/creature-name/', get_creature_name, name='get_creature_name'),
+
+    # Include all router endpoints under /api/
+    path('api/', include(router.urls)),
+
 ]

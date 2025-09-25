@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 
 # Create your models here.
@@ -49,9 +50,21 @@ class Question(models.Model):
     option_b = models.ForeignKey(Film, blank=True, null=True, on_delete=models.SET_NULL, related_name="option_b")
     option_c = models.ForeignKey(Film, blank=True, null=True, on_delete=models.SET_NULL, related_name="option_c")
     answer = models.ForeignKey(Film, blank=True, null=True, on_delete=models.SET_NULL, related_name="answer")
+    is_flagged = models.BooleanField(default=False)
 
     def __str__(self):
         """
         Question Layout
         """
         return f"Q{self.pk}: {self.genre} - {self.question}"
+    
+
+class Flag(models.Model):
+
+    """
+    Model to represent reason for flagged question
+    """
+
+    question = models.ForeignKey(Question, blank=True, null=True, on_delete=models.CASCADE)
+    comment = models.TextField()
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="author")

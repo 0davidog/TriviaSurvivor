@@ -13,6 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Trivia Survivor, use your knowledge of movie trivia to escape the creature.">
     <meta name="keywords" content="Trivia, Survivor, movie, horror-movie, quiz, zombie">
+    {% csrf_token %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
     
     <!-- Favicon Link -->
     <link rel="icon" type="image/ico" href="{% static 'favicon/favicon.ico' %}">
@@ -42,6 +44,7 @@
 
     <!-- Modal HTML Includes -->
     {% include 'includes/menu.html' %}
+    {% include 'includes/flag.html' %}
 
     <!-- Footer and Message HTML Includes -->
     {% include 'includes/msg.html' %}
@@ -53,9 +56,9 @@
 
     <!-- Custom JS Links-->
     <script type="module" src="/static/js/main.js"></script>
-    <script src="{% static 'js/menu.js' %}"></script>
+    <script type="module" src="{% static 'js/menu.js' %}"></script>
     <script type="module" src="{% static 'js/game.js' %}"></script>
-    <script src="{% static 'js/info.js' %}"></script>
+    <script type="module" src="{% static 'js/flag.js' %}"></script>
 
     <script>
     // This exposes the STATIC_URL or a base path to your JS code

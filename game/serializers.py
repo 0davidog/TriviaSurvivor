@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from data.models import Question, Film, Genre
+from data.models import Question, Film, Genre, Flag
 
 class FilmSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,3 +34,9 @@ class GenreSerializer(serializers.ModelSerializer):
             'killer_name', 
             'death_name',
             ]
+        
+
+class FlagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Flag
+        fields = "__all__"

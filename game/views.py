@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404
+from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from data.models import Genre, Question
+from data.models import Genre, Question, Flag
 from user.models import UserData
-from .serializers import QuestionSerializer
+from .serializers import QuestionSerializer, FlagSerializer
 
 class AuthStatusView(APIView):
     """
@@ -19,6 +20,7 @@ class AuthStatusView(APIView):
     def get(self, request):
         return Response({
             'is_authenticated': request.user.is_authenticated,
+            'id': request.user.id if request.user.is_authenticated else None,
             'username': request.user.username if request.user.is_authenticated else None
         })
 
@@ -89,3 +91,8 @@ def get_creature_name(request):
     genre_name = request.GET.get('genre')
     genre = Genre.objects.get(genre_name=genre_name)
     return Response({'creature_name': genre.creature_name})
+
+
+class FlagViewSet(viewsets.ModelViewSet):
+    queryset = Flag.objects.all()
+    serializer_class = FlagSerializer

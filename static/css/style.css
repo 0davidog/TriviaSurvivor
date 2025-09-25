@@ -72,6 +72,8 @@ nav {
 }
 
 .btn {
+	font-family: 'League Gothic', sans-serif;
+	font-size: 1.25rem;
 	color: #ffffff;
 	background-color: #000000;
 	margin: 5px;
@@ -190,7 +192,7 @@ nav {
 
 .counters {
 	position: relative;
-	top: -25px;
+	top: -35px;
 }
 
 #id_origin, #id_title, #id_director, #id_imdb, #id_option_a, #id_option_b, #id_option_c, #id_answer, #id_question {
@@ -203,4 +205,17 @@ nav {
 
 #id_genre {
 	width: 200px;
+}
+
+#comment-box {
+	width: 250px;
+	height: 150px;
+	border: 1px solid #555555;
+	border-radius: 5px;
+	resize: none;
+}
+
+textarea:focus {
+    outline: none;       /* Removes the default blue/colored outline */
+    box-shadow: none;    /* Removes any shadow some browsers add */
 }
