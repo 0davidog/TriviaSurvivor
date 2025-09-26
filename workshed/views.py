@@ -67,7 +67,7 @@ def film_detail(request, id):
             film.save()
             messages.add_message(
                 request, messages.SUCCESS,
-                f"Film data edit successful"
+                f"Film data edit saved."
                 )
             form = FilmForm(instance=film)
     else:
@@ -91,7 +91,7 @@ def new_film(request):
         if form.is_valid():
             film = form.save(commit=False)
             film.save()
-            messages.add_message(request, messages.SUCCESS, f"Film added successfully")
+            messages.add_message(request, messages.SUCCESS, f"Film data added.")
             return HttpResponseRedirect(reverse('films'))
     else:
 
@@ -155,7 +155,7 @@ def new_question(request):
         if form.is_valid():
             question = form.save(commit=False)
             question.save()
-            messages.add_message(request, messages.SUCCESS, f"Question added successfully")
+            messages.add_message(request, messages.SUCCESS, f"Question added saved.")
             return HttpResponseRedirect(reverse('questions'))
     else:
 
@@ -223,7 +223,7 @@ def genre_detail(request, id):
             genre.save()
             messages.add_message(
                 request, messages.SUCCESS,
-                f"Genre data edit successful"
+                f"Genre data edit saved"
                 )
             form = GenreForm(instance=genre)
     else:

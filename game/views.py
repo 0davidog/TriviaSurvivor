@@ -1,4 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
+from django.contrib import messages
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
@@ -14,6 +17,7 @@ class AuthStatusView(APIView):
     The get method is triggered on HTTP GET requests.
     It checks if a user is authenticated:
     Returns is_authenticated as a boolean.
+    Returns id if authenticated, otherwise None.
     Returns username if authenticated, otherwise None.
     """
     
@@ -96,3 +100,24 @@ def get_creature_name(request):
 class FlagViewSet(viewsets.ModelViewSet):
     queryset = Flag.objects.all()
     serializer_class = FlagSerializer
+
+
+
+
+
+@require_POST
+def add_message(request):
+    msg_text = request.POST.get("msg")
+    level = request.POST.get("level", "info")
+
+    # Map JS "level" string to Django constants
+    level_map = {
+        "debug": messages.DEBUG,
+        "info": messages.INFO,
+        "success": messages.SUCCESS,
+        "warning": messages.WARNING,
+        "error": messages.ERROR,
+    }
+
+    messages.add_message(request, level_map.get(level, messages.INFO), msg_text)
+    return JsonResponse({"status": "ok", "message": msg_text, "level": level})

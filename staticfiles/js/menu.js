@@ -1,4 +1,5 @@
-// menu.js ('Escape menu' navigvation modal)
+// menu.js  module - make sure script type="module" when linked.
+
 import { getEl } from "./ui.js";
 
 document.addEventListener("DOMContentLoaded", function () {

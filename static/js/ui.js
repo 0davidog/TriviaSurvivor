@@ -1,4 +1,5 @@
-// ui.js
+// ui.js module - make sure script type="module" when linked.
+
 export const getEl = (id) => document.getElementById(id);
 
 export const toggleVisibility = (id) => {
@@ -17,17 +18,17 @@ export const updateLives = (num) => {
     const lifeCounter = getEl('life-counter');
     if (lifeCounter) lifeCounter.innerHTML = `<i class="fa-solid fa-heart-pulse"></i> ${num}`;
     if (num <= 1) {
-        lifeCounter.classList.add('text-danger');
-        lifeCounter.classList.remove('text-warning');
-        lifeCounter.classList.remove('text-success');
+        lifeCounter.classList.add('error');
+        lifeCounter.classList.remove('warning');
+        lifeCounter.classList.remove('success');
     } else if (num <= 3) {
-        lifeCounter.classList.add('text-warning');
-        lifeCounter.classList.remove('text-danger');
-        lifeCounter.classList.remove('text-success');
+        lifeCounter.classList.add('warning');
+        lifeCounter.classList.remove('error');
+        lifeCounter.classList.remove('success');
     } else {
-        lifeCounter.classList.add('text-success');
-        lifeCounter.classList.remove('text-warning');
-        lifeCounter.classList.remove('text-danger');
+        lifeCounter.classList.add('success');
+        lifeCounter.classList.remove('warning');
+        lifeCounter.classList.remove('error');
     }
 }
 
@@ -48,11 +49,11 @@ export const updateInfoBox = (state, result) => {
     if (header && box) {
         if (result === 'survived') {
             header.textContent = `You Survived`;
-            header.classList.add("text-success");
+            header.classList.add("success");
             box.innerHTML = text;
         } else if (result === 'died') {
             header.textContent = `You Died`;
-            header.classList.add('text-danger');
+            header.classList.add('error');
             box.innerHTML = text;
         } else {
             header.textContent = `Game Over`;

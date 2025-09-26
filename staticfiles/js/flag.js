@@ -1,4 +1,5 @@
-// flag.js ('Escape menu' navigvation modal)
+// flag.js module - make sure script type="module" when linked.
+
 import { getEl } from "./ui.js";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -8,9 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const menuBtn = getEl("menu-btn");
     const closeBtn = getEl("close-btn");
     const cancelBtn = getEl("cancel-btn");
+    const comBtn = getEl("comment-btn");
 
     // Open modal
-    flagBtn.addEventListener("click", function () {
+    if (flagBtn) {
+        flagBtn.addEventListener("click", function () {
         flagModal.style.display = "flex";
         menuBtn.style.display = "none";
         closeBtn.style.display = "block";
@@ -18,16 +21,26 @@ document.addEventListener("DOMContentLoaded", function () {
             menuModal.style.display = "none";
         }
     });
+    }
+    
 
     // Close modal
-    closeBtn.addEventListener("click", function () {
+    closeBtn?.addEventListener("click", function () {
         flagModal.style.display = "none";
         closeBtn.style.display = "none";
         menuBtn.style.display = "block";
     });
 
         // Close modal
-    cancelBtn.addEventListener("click", function () {
+    cancelBtn?.addEventListener("click", function () {
+        flagModal.style.display = "none";
+        closeBtn.style.display = "none";
+        menuBtn.style.display = "block";
+    });
+
+            // Close modal
+    comBtn?.addEventListener("click", function () {
+        console.log("comment button clicked?")
         flagModal.style.display = "none";
         closeBtn.style.display = "none";
         menuBtn.style.display = "block";

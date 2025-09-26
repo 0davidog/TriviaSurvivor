@@ -1,4 +1,5 @@
-// game.js
+// game.js module - make sure script type="module" when linked.
+
 import { getEl } from "./ui.js";
 import { fetchCreature, fetchQuestions } from "./api.js";
 

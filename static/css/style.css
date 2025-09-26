@@ -36,8 +36,20 @@ h1, h2 {
 	font-size: 2.5rem;
 }
 
-.green {
+.success {
 	color: #198754;
+}
+
+.error {
+	color: #dc3545;
+}
+
+.warning {
+	color: #ffc107;
+}
+
+.info {
+	color: #0d6efd;
 }
 
 nav {
@@ -52,9 +64,28 @@ nav {
 }
 
 .alert {
-	background-color: rgba(0, 0, 0, 0.5);
-	border-radius: 20px;
-	border: 1px solid #555555;
+	background-color: #000000;
+	border-radius: 10px;
+}
+
+.alert.success {
+	border: 4px solid #198754;
+}
+
+.alert.error {
+	border: 4px solid #dc3545;
+}
+
+.alert.warning {
+	border: 4px solid #ffc107;
+}
+
+.alert.info {
+	border: 4px solid #0d6efd;
+}
+
+.alert.debug {
+	border: 4px solid #ffffff;
 }
 
 .content-box {
