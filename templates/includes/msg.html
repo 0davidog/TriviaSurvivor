@@ -1,10 +1,20 @@
-{% if messages %}
+
 <div class="container-fluid" id="msg-container">
   {% for message in messages %}
     <div class="{{ message.tags }} alert alert-dismissible fade show text-center" role="alert">
+      
+      <i class="
+      {{ message.tags }} fa-solid 
+      {% if message.tags == 'success' %}fa-circle-check
+      {% elif message.tags == 'warning' %}fa-circle-exclamation
+      {% elif message.tags == 'error' %}fa-triangle-exclamation
+      {% elif messages.tags == 'info' %}fa-circle-info
+      {% elif messages.tags == 'debug' %}fa-bug
+      {% endif %}
+      " id="msg-icon"></i>
+
       {{ message | safe }}
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="{{ message.tags }} fa-regular fa-circle-xmark"></i></button>
     </div>
   {% endfor %}
 </div>
-{% endif %}

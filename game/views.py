@@ -36,7 +36,6 @@ def index(request):
     THEN TRY get user data and icon url.
     ELSE leave variables empty.
     """
-
     user_data = None
     icon_url = None
 
@@ -100,24 +99,3 @@ def get_creature_name(request):
 class FlagViewSet(viewsets.ModelViewSet):
     queryset = Flag.objects.all()
     serializer_class = FlagSerializer
-
-
-
-
-
-@require_POST
-def add_message(request):
-    msg_text = request.POST.get("msg")
-    level = request.POST.get("level", "info")
-
-    # Map JS "level" string to Django constants
-    level_map = {
-        "debug": messages.DEBUG,
-        "info": messages.INFO,
-        "success": messages.SUCCESS,
-        "warning": messages.WARNING,
-        "error": messages.ERROR,
-    }
-
-    messages.add_message(request, level_map.get(level, messages.INFO), msg_text)
-    return JsonResponse({"status": "ok", "message": msg_text, "level": level})

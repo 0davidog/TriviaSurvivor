@@ -52,6 +52,10 @@ h1, h2 {
 	color: #0d6efd;
 }
 
+.debug {
+	color: #fff;
+}
+
 nav {
 	background-color: #000000;
 	height: 60px;

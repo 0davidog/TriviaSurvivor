@@ -88,10 +88,10 @@ export async function flagQuestion(question, comment, author) {
 
     if (!response.ok) {
         console.error("Error submitting feedback");
-        createDjangoMessage("error", "Error submitting feedback");
+        renderMessage("error", "Error submitting feedback");
     } else {
         console.log("Feedback submitted!");
-        createDjangoMessage("success", "Feedback submitted!");
+        renderMessage("success", "Feedback submitted!");
     }
 }
 
@@ -101,36 +101,28 @@ export async function flagQuestion(question, comment, author) {
  * @param {*} text 
  * @returns 
  */
-function renderMessage(level, text) {
-    const div = document.getElementById("msg-container");
-    if (!div) return;
+export function renderMessage(level, text) {
+    console.log(level, text);
+    const div = getEl("msg-container");
+    let iconType = "";
 
+    if (!div) {
+        return;
+    };
+
+    if (level == 'success') {
+        iconType = "fa-circle-check";
+    } else if (level == "error") {
+        iconType = "fa-triangle-exclamation";
+    } else if (level == 'info') {
+        iconType = "fa-cirlce-exclamation";
+    } else {
+        iconType = "fa-bug";
+    }
     const msg = document.createElement("div");
     msg.className = `${level} alert alert-dismissible fade show text-center`;  // matches Django's "success", "error", etc.
-    msg.innerHTML = `${text}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="${level} fa-regular fa-circle-xmark"></i></button>`;
+    msg.innerHTML = `<i class="${level} fa-solid ${iconType}"></i> ${text}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="${level} fa-regular fa-circle-xmark"></i></button>`;
     msg.role = "alert";
     div.appendChild(msg);
     console.log(msg)
-}
-
-/**
- * @function createDjangoMessage()
- * @param {*} level 
- * @param {*} msg 
- */
-export function createDjangoMessage(level, msg) {
-    fetch("/api/add-message/", {
-        method: "POST",
-        headers: {
-            "X-CSRFToken": getCSRFToken(),
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({ msg, level }),
-    })
-    .then(res => res.json())
-    .then(data => {
-        console.log("Message added:", data);
-        // Render immediately without reload:
-        renderMessage(data.level, data.message);
-    });
 }

@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import views
-from .views import AuthStatusView, get_filtered_questions, get_creature_name, FlagViewSet, add_message
+from .views import AuthStatusView, get_filtered_questions, get_creature_name, FlagViewSet
 
 # Create a DRF router
 router = DefaultRouter()
@@ -16,7 +16,6 @@ urlpatterns = [
     path('api/auth-status/', AuthStatusView.as_view(), name='auth_status'),
     path('api/questions/', get_filtered_questions, name='get_filtered_questions'),
     path('api/creature-name/', get_creature_name, name='get_creature_name'),
-    path("api/add-message/", add_message, name="add_message"),
 
     # Include all router endpoints under /api/
     path('api/', include(router.urls)),

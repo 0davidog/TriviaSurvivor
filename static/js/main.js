@@ -1,10 +1,11 @@
 // main.js module - make sure script type="module" when linked.
 
-import { fetchAuthStatus, fetchCreature, fetchQuestions, flagQuestion, createDjangoMessage } from './api.js';
+import { fetchAuthStatus, fetchQuestions, flagQuestion, renderMessage } from './api.js';
 import { toggleVisibility, updateDialogue, updateInfoBox, updateLives, updateScore, getEl } from './ui.js';
 import { gameState, resetGame, formatAnswer, updateImage } from './game.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
+    renderMessage("debug", "Welcome, app currently under construction.");
 
     // DOM elements
     const playBtn = getEl("play-btn");
