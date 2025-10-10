@@ -10,14 +10,27 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-from pathlib import Path
-
 import os
-
+import cloudinary
+from pathlib import Path
 import dj_database_url
 
 if os.path.isfile('env.py'):
     import env
+
+# Cloudinary configuration (call config to read CLOUDINARY_URL)
+cloudinary.config()  # reads os.environ["CLOUDINARY_URL"] automatically
+
+# Default storage for media files
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+MEDIA_URL = '/media/'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get("CLOUD_NAME"),
+    'API_KEY': os.environ.get("CLOUD_API_KEY"),
+    'API_SECRET': os.environ.get("CLOUD_SECRET_KEY"),
+}
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -82,6 +95,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'rest_framework',
     'django_countries',
+    'cloudinary',
+    'cloudinary_storage',
 
     # Allauth
     'allauth',

@@ -1,5 +1,7 @@
 // api.js module - make sure script type="module" when linked.
+
 import { getEl } from "./ui.js";
+
 /**
  * @function getCSRFToken()
  * Requires: `{% csrf_token %} <meta name="csrf-token" content="{{ csrf_token }}">` in base.html
@@ -66,7 +68,6 @@ export async function fetchCreature(genre) {
  * Related to 'class Flag(models.Model)' in data/models.py
  * POSTS question id, comment text and author as new Flag model instance.
  */
-
 export async function flagQuestion(question, comment, author) {
 
     const flagModal = getEl("flag-modal");

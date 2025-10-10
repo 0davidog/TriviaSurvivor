@@ -42,10 +42,8 @@ def index(request):
     if request.user.is_authenticated:
         try:
             user_data = UserData.objects.get(user=request.user)
-            icon_url = f"images/player_icons/icon{user_data.player_icon}.png"
         except UserData.DoesNotExist:
             user_data = None
-            icon_url = None
 
 
     genres = Genre.objects.all().order_by('id')
@@ -53,7 +51,6 @@ def index(request):
 
     context = {
         'user_data': user_data,
-        'icon_url': icon_url,
         'genres': genres,
         'questions': questions,
     }
