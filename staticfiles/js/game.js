@@ -1,16 +1,19 @@
 // game.js module - make sure script type="module" when linked.
 
 import { getEl } from "./ui.js";
-import { fetchCreature, fetchQuestions } from "./api.js";
+import { fetchGenre, fetchQuestions } from "./api.js";
 
 export const gameState = {
     userName: "",
+    userId: null,
     lives: 5,
     score: 0,
     questionNumber: 0,
     questions: [],
     genre: null,
-    difficulty: null
+    genreId: null,
+    difficulty: null,
+    survived: false
 };
 
 export const resetGame = async (genre, diff) => {
@@ -28,7 +31,7 @@ export const formatAnswer = (movie) => `${movie.title} (${movie.year})`;
 
 export const updateImage = async (genre) => {
     try {
-        const data = await fetchCreature(genre); // wait for the async call
+        const data = await fetchGenre(genre); // wait for the async call
         const creature = data.creature_name.toLowerCase();     // extract creature name from response
         const imageTag = getEl('creature-view');
         const imageURL = `${STATIC_URL}images/creatures/${creature}_${gameState.lives}.webp`;

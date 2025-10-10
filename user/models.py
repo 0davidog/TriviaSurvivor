@@ -6,6 +6,11 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 
 class UserIcon(models.Model):
+    """
+    Model to represent the user icons available.
+    Upload and storage via Cloudinary
+    Requires: 'from cloudinary.models import CloudinaryField'
+    """
     icon_name = models.CharField()
     icon = CloudinaryField('image')
     public = models.BooleanField(default=True)

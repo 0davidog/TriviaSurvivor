@@ -6,9 +6,9 @@ from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from data.models import Genre, Question, Flag
+from data.models import Genre, Question, Flag, GameResult
 from user.models import UserData
-from .serializers import QuestionSerializer, FlagSerializer
+from .serializers import QuestionSerializer, FlagSerializer, GameSerializer
 
 class AuthStatusView(APIView):
     """
@@ -81,18 +81,28 @@ def get_filtered_questions(request):
 
 
 @api_view(['GET'])
-def get_creature_name(request):
+def get_genre_data(request):
     """
     Function-based view using the @api_view(['GET']) decorator from DRF. 
     Retrieves a genre from query parameters (?genre=zombies, etc.).
-    Fetches the Genre model instance and returns its creature_name.
+    Fetches the Genre model instance and returns its fields.
     Returns the data as JSON
     """
     genre_name = request.GET.get('genre')
     genre = Genre.objects.get(genre_name=genre_name)
-    return Response({'creature_name': genre.creature_name})
+    return Response({
+        'genre_name': genre.genre_name,
+        'creature_name': genre.creature_name,
+        'death_name': genre.death_name,
+        'id': genre.id,
+        })
 
 
 class FlagViewSet(viewsets.ModelViewSet):
     queryset = Flag.objects.all()
     serializer_class = FlagSerializer
+
+
+class GameViewSet(viewsets.ModelViewSet):
+    queryset = GameResult.objects.all()
+    serializer_class = GameSerializer

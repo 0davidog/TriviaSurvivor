@@ -1,6 +1,6 @@
 // main.js module - make sure script type="module" when linked.
 
-import { fetchAuthStatus, fetchQuestions, flagQuestion, renderMessage } from './api.js';
+import { fetchAuthStatus, fetchQuestions, flagQuestion, renderMessage, fetchGenre, recordGame } from './api.js';
 import { toggleVisibility, updateDialogue, updateInfoBox, updateLives, updateScore, getEl } from './ui.js';
 import { gameState, resetGame, formatAnswer, updateImage } from './game.js';
 
@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const auth = await fetchAuthStatus();
     if (auth.is_authenticated) {
         gameState.userName = auth.username;
+        gameState.userId = auth.id;
         console.log(`Logged in as: ${gameState.userName} [${auth.id}]`);
     }
 
@@ -41,9 +42,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.querySelectorAll(".genre-select-btn").forEach(btn => {
             
             btn.addEventListener('click', async () => {
-                gameState.genre = btn.dataset.genre;
+                let genreData = await fetchGenre(btn.dataset.genre);
+
                 toggleVisibility('select-game');
                 toggleVisibility('loading-icon');
+                gameState.genre = genreData.genre_name;
+                gameState.genreId = genreData.id;
+                console.log(gameState);
                 gameState.questions = await fetchQuestions(gameState.genre);
                 updateImage(gameState.genre);
                 toggleVisibility('loading-icon');
@@ -78,7 +83,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const nextStep = () => {
         if (gameState.lives === 0) return endGame('died');
-        if (gameState.questionNumber >= gameState.questions.length) return endGame('survived');
+        if (gameState.questionNumber >= gameState.questions.length) return (
+            gameState.survived = true,
+            endGame('survived'));
         displayQuestion();
     };
 
@@ -137,7 +144,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const endGame = (result) => {  
         toggleVisibility("results-box");
+        console.log(gameState);
         updateInfoBox(gameState, result);
+        recordGame(gameState);
     };
 
     // Button listeners

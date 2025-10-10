@@ -59,6 +59,22 @@ class Question(models.Model):
         return f"Q{self.pk}: {self.genre} - {self.question}"
     
 
+class GameResult(models.Model):
+    """
+    Model to collect info on each game played
+    """
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    survived = models.BooleanField()
+    score = models.PositiveIntegerField()
+    difficulty = models.CharField(max_length=20)
+    when = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user} | {self.when}"
+
+
 class Flag(models.Model):
 
     """

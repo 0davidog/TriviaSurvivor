@@ -57,7 +57,7 @@
             </div>
             {% if user.is_staff %}
             <div class="col">
-                <a class="btn main-menu-btn" href="{% url 'workshed' %}">ADMIN</a>
+                <a class="btn main-menu-btn" href="{% url 'admin:index' %}" target="_blank">ADMIN</a>
             </div>
             {% endif %}
         </div>

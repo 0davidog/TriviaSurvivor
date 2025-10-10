@@ -42,15 +42,15 @@ export async function fetchQuestions(genre) {
 
 /**
  * @async
- * @function fetchCreature()
+ * @function fetchGenre()
  * Fetches from 'def get_creature_name(request)' in game/views.py
  * Requires 'path('api/creature-name/', get_creature_name, name='get_creature_name')' in game/urls.py
  * @param {*} genre
  * Fetches creature name field from genre model instance matching param
  * @returns Creature name as JSON
  */
-export async function fetchCreature(genre) {
-    const res = await fetch(`/api/creature-name/?genre=${encodeURIComponent(genre)}`);
+export async function fetchGenre(genre) {
+    const res = await fetch(`/api/genre-data/?genre=${encodeURIComponent(genre)}`);
     return await res.json();
 }
 
@@ -126,4 +126,29 @@ export function renderMessage(level, text) {
     msg.role = "alert";
     div.appendChild(msg);
     console.log(msg)
+}
+
+export async function recordGame(data) {
+    const response = await fetch("/api/record_game/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCSRFToken(),
+        },
+        body: JSON.stringify({
+            user: data.userId,
+            genre: data.genreId,
+            survived: data.survived,
+            score: data.score,
+            difficulty: data.difficulty,
+        }),
+    });
+
+    if (!response.ok) {
+        console.error("EError saving stats");
+        renderMessage("error", "Error saving stats");
+    } else {
+        console.log("Stats Recorded");
+        renderMessage("success", "Stats Recorded.");
+    }
 }
