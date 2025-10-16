@@ -5,7 +5,6 @@ import { toggleVisibility, updateDialogue, updateInfoBox, updateLives, updateSco
 import { gameState, resetGame, formatAnswer, updateImage } from './game.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
-    renderMessage("debug", "Welcome, app currently under construction.");
 
     // DOM elements
     const playBtn = getEl("play-btn");
@@ -17,9 +16,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     const comBtn = getEl("comment-btn");
     const comBox = getEl("comment-box");
 
+    let guest = true;
+
     // Fetch login state and username
     const auth = await fetchAuthStatus();
     if (auth.is_authenticated) {
+        guest = false;
         gameState.userName = auth.username;
         gameState.userId = auth.id;
         console.log(`Logged in as: ${gameState.userName} [${auth.id}]`);
@@ -146,7 +148,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         toggleVisibility("results-box");
         console.log(gameState);
         updateInfoBox(gameState, result);
-        recordGame(gameState);
+        if (!guest) {
+            recordGame(gameState);
+        }
+        
     };
 
     // Button listeners

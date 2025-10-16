@@ -9,13 +9,14 @@
                 <h2 class="menu-font">ESCAPE MENU</h2>
             </div>
         </div>
-{% if user.is_authenticated %}
+
         <hr>
         
         <div class="row">
 
             <div class="col-12 username-font">
-                        {{ user }}
+                {% if user.is_authenticated %}
+                        {{ user }} {% else %} Guest {% endif %}
                         {% if user_data.nationality %}
                             <img src="{{ user_data.nationality.flag }}" alt="{{ user_data.nationality }} flag">
                         {% endif %}
@@ -23,15 +24,17 @@
 
         </div>
 
-        <div class="row player-info">
+        <div class="row player-info mb-2">
 
             <div class="col-12">
-                    <img src="{{ user_data.user_icon.icon.url }}" alt="Player icon" class="player-icon">    
+                <a href="{% url 'view_profile' %}">
+                    <img src="{% if user.is_authenticated %}{{ user_data.user_icon.icon.url }}{% else %}{{ default_icon.icon.url }}{% endif %}" alt="Player icon" class="player-icon">
+                </a> 
             </div>
 
         </div>
         
-        {% endif %}
+        
         <hr>
 
         <div class="row mb-2">{% if user.is_authenticated %}
@@ -40,18 +43,17 @@
             </div>
             {% else %}
             <div class="col-12">
-                <p><small>[Not logged in.]</small></p>
                 <a class="btn main-menu-btn" href="{% url 'account_login' %}">LOG IN/REGISTER</a>
             </div>
             {% endif %}
         <div class="col hidden">
             <button class="btn main-menu-btn" id="info-btn">ABOUT THE GAME</button>
         </div>
-
+{% if user.is_authenticated %}
         <div class="col">
             <a class="btn main-menu-btn" href="{% url 'view_profile' %}" id="profile-btn">MY PROFILE</a>
         </div>
-        
+        {% endif %}
             <div class="col">
                 <a class="btn main-menu-btn" href="{% url 'index' %}">RETURN TO TITLE</a>
             </div>

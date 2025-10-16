@@ -16,8 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import view_profile
+from .views import view_profile, change_icon, set_icon
 
 urlpatterns = [
     path('', view_profile, name='view_profile'),
+    path('change_icon/', change_icon, name='change_icon'),
+    path('set_icon', set_icon, name='set_icon'),
 ]
