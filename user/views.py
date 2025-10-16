@@ -42,3 +42,5 @@ def set_icon(request):
             user_data.user_icon = icon
             user_data.save()
         return redirect("view_profile")
+    
+

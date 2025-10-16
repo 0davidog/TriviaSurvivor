@@ -55,6 +55,9 @@
         </div>
         {% endif %}
             <div class="col">
+                <a class="btn main-menu-btn" href="{% url 'survivors' %}">SURVIVORS</a>
+            </div>
+            <div class="col">
                 <a class="btn main-menu-btn" href="{% url 'index' %}">RETURN TO TITLE</a>
             </div>
             {% if user.is_staff %}

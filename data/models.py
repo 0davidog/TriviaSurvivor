@@ -64,7 +64,7 @@ class GameResult(models.Model):
     Model to collect info on each game played
     """
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="games")
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     survived = models.BooleanField()
     score = models.PositiveIntegerField()
