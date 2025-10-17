@@ -4,16 +4,20 @@ import { getEl } from "./ui.js";
 import { fetchGenre, fetchQuestions } from "./api.js";
 
 export const gameState = {
+    stage: 0,
     userName: "",
     userId: null,
     lives: 5,
     score: 0,
     questionNumber: 0,
+    questionLimit: 10,
     questions: [],
     genre: null,
+    creatureName: "",
     genreId: null,
     difficulty: null,
-    survived: false
+    survived: false,
+    intro: 1
 };
 
 export const resetGame = async (genre, diff) => {
@@ -34,6 +38,7 @@ export const updateImage = async (genre) => {
         const data = await fetchGenre(genre); // wait for the async call
         const creature = data.creature_name.toLowerCase();     // extract creature name from response
         const imageTag = getEl('creature-view');
+        imageTag.setAttribute("alt", `${creature} Approaching`);
         const imageURL = `${STATIC_URL}images/creatures/${creature}_${gameState.lives}.webp`;
         imageTag.src = imageURL;
     } catch (err) {

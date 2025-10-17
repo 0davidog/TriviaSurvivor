@@ -159,6 +159,7 @@ nav {
 /* Modal content */
 .modal-content {
     background-color: transparent;
+	margin-top: 70px;
     padding: 20px;
     border-radius: 8px;
     width: 300px;
@@ -196,10 +197,6 @@ nav {
 .quiz-text {
 	font-size: 0.8rem;;
 	background-color: rgba(0, 0, 0, 0.50);
-}
-
-.select-game {
-	margin-top: 100px;
 }
 
 .genre-btn {
@@ -284,4 +281,14 @@ textarea:focus {
 	border-radius: 10px;
 	width: 110px;
 	height: 110px;
+}
+
+img {
+	border-radius: 10px;
+}
+
+.bottom-half {
+	align-items: top; 
+	width: 339px;
+	min-height: 326px;
 }
