@@ -95,6 +95,7 @@ def get_genre_data(request):
         'creature_name': genre.creature_name,
         'death_name': genre.death_name,
         'id': genre.id,
+        'chapter': genre.chapter_number,
         })
 
 

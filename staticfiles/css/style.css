@@ -206,13 +206,6 @@ nav {
 	border-radius: 20px;
 }
 
-.genre-btn-zombie {
-	background-image: url('../images/creatures/zombie_1.webp');
-	background-size:contain;
-	background-repeat: no-repeat;
-  	background-position: center;
-}
-
 .genre-select-btn {
 	background-color: rgba(0, 0, 0, 0.50);
 }

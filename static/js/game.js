@@ -17,7 +17,7 @@ export const gameState = {
     genreId: null,
     difficulty: null,
     survived: false,
-    intro: 1
+    intro: 1,
 };
 
 export const resetGame = async (genre, diff) => {
@@ -33,13 +33,16 @@ export const resetGame = async (genre, diff) => {
 
 export const formatAnswer = (movie) => `${movie.title} (${movie.year})`;
 
-export const updateImage = async (genre) => {
+export const updateImage = async (genre, imageNum, effect) => {
+    console.log('updating image')
     try {
         const data = await fetchGenre(genre); // wait for the async call
+        const chapter = data.chapter;
         const creature = data.creature_name.toLowerCase();     // extract creature name from response
         const imageTag = getEl('creature-view');
         imageTag.setAttribute("alt", `${creature} Approaching`);
-        const imageURL = `${STATIC_URL}images/creatures/${creature}_${gameState.lives}.webp`;
+        const imageURL = `${STATIC_URL}images/game/chapter${chapter}_image${imageNum}_${effect}.webp`;
+        console.log(imageURL);
         imageTag.src = imageURL;
     } catch (err) {
         console.error('Error updating image:', err);

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -13,9 +14,17 @@ class Genre(models.Model):
     genre_name = models.CharField(max_length=100, unique=True)
     creature_name = models.CharField(max_length=100, blank=True)
     death_name = models.CharField(max_length=100, blank=True)
+    button = CloudinaryField('image', null=True)
+    chapter_number = models.IntegerField(null=True)
 
     def __str__(self):
         return f"{self.genre_name}"
+    
+    @property
+    def button_background(self):
+        if self.button:
+            return f"background-image: url('{self.button.url}'); background-size: contain; background-position: center; background-repeat: no-repeat;"
+        return ""
     
 
 class Film(models.Model):

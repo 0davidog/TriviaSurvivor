@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (gameState.questionNumber >= gameState.questions.length) return (
             gameState.survived = true,
             endGame('survived'));
+        updateImage(gameState.genre, gameState.lives, "a");
         displayQuestion();
     };
     // STAGE 02 SELECT GENRE
@@ -67,11 +68,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log(`STAGE: ${gameState.stage}. Genre Select`);
         toggleVisibility("image-box");
         toggleVisibility('select-game');
-
-        document.querySelectorAll(".genre-btn").forEach(btn => {
-            let creature = btn.dataset.creature.toLowerCase();
-            btn.classList.add(`genre-btn-${creature}`);
-        })
         
         document.querySelectorAll(".genre-select-btn").forEach(btn => {
             
@@ -84,7 +80,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 gameState.creatureName = genreData.creature_name;
                 console.log(gameState);
                 gameState.questions = await fetchQuestions(gameState.genre);
-                updateImage(gameState.genre);
+                updateImage(gameState.genre, 0, "a");
                 toggleVisibility('loading-icon');
                 setupDifficultyButtons();
             }, { once: true });
@@ -127,6 +123,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // STAGE 05 QUESTIONS
     const displayQuestion = () => {
+        updateImage(gameState.genre, gameState.lives, "a");
         gameState.stage++;
         console.log(`STAGE: ${gameState.stage} QUESTION: ${gameState.questionNumber+1}`);
         const q = gameState.questions[gameState.questionNumber];
@@ -154,14 +151,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         gameState.stage++;
 
         if (userAnswer === correct) {
+            updateImage(gameState.genre, gameState.lives, "b");
             gameState.score++;
             updateScore(gameState.score);
             console.log(`STAGE: ${gameState.stage}. Dialogue`)
             showDialogue("Correct", `The ${gameState.creatureName} is stunned by your knowledge.`);
         } else {
+            updateImage(gameState.genre, gameState.lives, "c");
             gameState.lives--;
             updateLives(gameState.lives);
-            updateImage(gameState.genre);
             console.log(`STAGE: ${gameState.stage}. Dialogue`)
             showDialogue("Incorrect", `The ${gameState.creatureName} takes a step forward...`);
         }

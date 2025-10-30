@@ -5,7 +5,7 @@
 
     <div class="row p-0 mb-4">
     <div class="col-12 p-0 text-center">
-        <img src="{% static 'images/TS_logo.jpg' %}" alt="logo" id="ts-logo">
+        <img src="{% static '\images\game\ts_00_logo.webp' %}" alt="logo" id="ts-logo">
     </div>
 </div>
 
@@ -47,8 +47,8 @@
     </div>
 
     {% for genre in genres %}
-    <div class="col-12 genre-btn mb-4 d-flex flex-column align-items-center justify-content-center" data-creature="{{ genre.creature_name }}">
-        <button class="btn main-menu-btn genre-select-btn" data-genre="{{ genre }}">{{ genre }}</button>
+    <div class="col-12 genre-btn mb-4 d-flex flex-column align-items-center justify-content-center" data-creature="{{ genre.creature_name }}" style="{{ genre.button_background }}">
+        <button class="btn main-menu-btn genre-select-btn" data-genre="{{ genre }}">{{ genre | upper }}</button>
     </div>
     {% endfor %}
     
@@ -72,11 +72,11 @@
 
 <div class="row hidden p-0" id="image-box">
     <div class="col-12 p-0 text-center">
-        <img src="{% static 'images/creatures/zombie_0.webp' %}" alt="Creature Approaching" id="creature-view">
+        <img src="{% static '\images\game\ts_00_intro.webp' %}" alt="Creature Approaching" id="creature-view">
     </div>
 </div>
 
-<div class="row counters p-0">
+<div class="row counters p-0 hidden">
     <div class="col-6 text-start">
         <p class="ps-2" id="life-counter"></p>
     </div>
