@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mb-5">
+
+    <div class="row text-center mb-4">
+        <div class="col-12">
+            <h1>{{ genre }} Films</h1>
+        </div>
+    </div>
+{% for film in films %}
+    <div class="row mb-2">
+        
+        <div class="col-2 text-end">
+            <p>{{ forloop.counter }}</p>
+        </div>
+        <div class="col-10">
+            <a href="{% url 'film_detail' genre.id film.id %}">{{ film.title }}</a><br>
+            {{ film.director }}&nbsp;({{ film.year }})&nbsp;{{ film.origin }}
+        </div>
+       
+    </div>
+ {% endfor %}
+</div>
+
+
+
+
+
+
+
+{% endblock %}

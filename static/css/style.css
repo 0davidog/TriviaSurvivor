@@ -14,7 +14,7 @@ body {
 }
 
 /* Setting font and size of all h1 elements */
-h1, h2 {
+h1, h2, h3 {
 	font-family: 'League Gothic', sans-serif;
 }
 
@@ -165,6 +165,7 @@ nav {
     width: 300px;
     text-align: center;
     position: relative;
+	padding-top: 70px;
 }
 
 /* Menu/Close buttons */

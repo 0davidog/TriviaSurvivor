@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container game-container mb-4">
+    <p><em>{{ film.genre }} Cinema</em></p>
+
+    <div class="row text-center">
+        <div class="col-12">
+            <h2>{{ film.title }},&nbsp;{{ film.year }}</h2>
+            <h3>Directed by {{film.director}}</h3>
+            
+        </div>
+    </div>
+
+    <div class="row text-center mb-4">
+        <div class="col-12">
+            Origin: {{ film.origin }}&nbsp;<img src="{{ film.origin.flag }}" alt="{{ film.origin }} flag">
+        </div>
+    </div>
+
+    <div class="row text-center mb-5">
+        
+        <div class="col-12">
+            IMDB: <a href="{{ film.imdb }}" target="_blank">View Film Profile</a>
+        </div>
+       
+    </div>
+
+        <div class="row text-center mb-2">
+        
+        <div class="col-12">
+            <a href="{% url 'genres' %}">Back to Films</a>
+        </div>
+       
+    </div>
+
+</div>
+
+
+
+
+
+
+
+{% endblock %}

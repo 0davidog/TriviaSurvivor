@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.db.models import Count, Avg, Q
 from django.contrib.auth.models import User
+from .models import Genre, Film
 
 # Create your views here.
 def survivors(request):
@@ -17,3 +18,36 @@ def survivors(request):
     }
 
     return render(request, 'data/survivors.html', context)
+
+
+def genres(request):
+
+    genres = Genre.objects.all()
+
+    context = {
+        'genres': genres
+    }
+
+    return render(request, 'data/genres.html', context)
+
+
+def films(request, genre):
+
+    films = Film.objects.filter(genre=genre).order_by("year")
+    genre_name = get_object_or_404(Genre, id=genre)
+    context = {
+        'films': films,
+        'genre': genre_name,
+    }
+
+    return render(request, 'data/films.html', context)
+
+def film_detail(request, genre, film):
+
+    film = get_object_or_404(Film, id=film)
+
+    context = {
+        "film": film
+    }
+
+    return render(request, 'data/film_detail.html', context)

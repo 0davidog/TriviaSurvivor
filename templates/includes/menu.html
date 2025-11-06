@@ -51,11 +51,14 @@
         </div>
 {% if user.is_authenticated %}
         <div class="col">
-            <a class="btn main-menu-btn" href="{% url 'view_profile' %}" id="profile-btn">MY PROFILE</a>
+            <a class="btn main-menu-btn" href="{% url 'view_profile' %}" id="profile-btn">MY ACCOUNT</a>
         </div>
         {% endif %}
             <div class="col">
-                <a class="btn main-menu-btn" href="{% url 'survivors' %}">SURVIVORS</a>
+                <a class="btn main-menu-btn" href="{% url 'survivors' %}">SURVIVOR LIST</a>
+            </div>
+            <div class="col">
+                <a class="btn main-menu-btn" href="{% url 'genres' %}">FILM DATABASE</a>
             </div>
             <div class="col">
                 <a class="btn main-menu-btn" href="{% url 'index' %}">RETURN TO TITLE</a>
