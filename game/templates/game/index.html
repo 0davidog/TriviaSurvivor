@@ -1,24 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
-<div class="container game-container  text-center" id="title-menu"> 
 
+<div class="container game-container text-center" id="title-menu">
+
+<!-- TITLE MENU -->
     <div class="row p-0 mb-4">
-    <div class="col-12 p-0 text-center">
-        <img src="{% static '\images\game\ts_00_logo.webp' %}" alt="logo" id="ts-logo">
+        <div class="col-12 p-0 text-center">
+            <img src="{% static '\images\game\ts_00_logo.webp' %}" alt="logo" id="ts-logo">
+        </div>
     </div>
-</div>
-
-    <!-- TITLE MENU -->
 
 {% if not user.is_authenticated %}
     <div class="row bottom-half">
         
         <div class="col-12">
-            <a class="btn main-menu-btn" href="{% url 'account_login' %}">LOG IN/REGISTER</a>
-        </div>
-
-        <div class="col-12">
+            <a class="btn main-menu-btn mb-2" href="{% url 'account_login' %}">LOG IN/REGISTER</a>
             <a class="btn main-menu-btn" id="guest-btn">PLAY AS GUEST</a>
         </div>
 
@@ -27,10 +24,12 @@
 
 {% if user.is_authenticated %}
     <div class="row bottom-half">
+
         <div class="col-12">
             <button class="btn main-menu-btn mb-2" id="play-btn">PLAY</button>
             <a class="btn main-menu-btn" href="{% url 'account_logout' %}">LOG OUT</a>
         </div>
+
     </div>
 {% endif %}
 
@@ -47,8 +46,11 @@
     </div>
 
     {% for genre in genres %}
-    <div class="col-12 genre-btn mb-4 d-flex flex-column align-items-center justify-content-center" data-creature="{{ genre.creature_name }}" style="{{ genre.button_background }}">
+    <div class="col-12 mb-2 genre-btn d-flex flex-column align-items-center justify-content-center" data-creature="{{ genre.creature_name }}" Style="{{ genre.button_background }}">
         <button class="btn main-menu-btn genre-select-btn" data-genre="{{ genre }}">{{ genre | upper }}</button>
+    </div>
+    <div class="col-12 mb-2">
+        <small><p>Genre Description: {{ genre.description}}</p></small>
     </div>
     {% endfor %}
     

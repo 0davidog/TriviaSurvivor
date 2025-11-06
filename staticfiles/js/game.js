@@ -18,6 +18,7 @@ export const gameState = {
     difficulty: null,
     survived: false,
     intro: 1,
+    chapter: null,
 };
 
 export const resetGame = async (genre, diff) => {

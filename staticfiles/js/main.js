@@ -3,6 +3,7 @@
 import { fetchAuthStatus, fetchQuestions, flagQuestion, renderMessage, fetchGenre, recordGame } from './api.js';
 import { toggleVisibility, updateDialogue, updateInfoBox, updateLives, updateScore, getEl } from './ui.js';
 import { gameState, resetGame, formatAnswer, updateImage } from './game.js';
+import { dialogueSet } from './dialogue.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
 
@@ -25,6 +26,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         gameState.userName = auth.username;
         gameState.userId = auth.id;
         console.log(`Logged in as: ${gameState.userName} [${auth.id}]`);
+    } else {
+        gameState.userName = "Guest";
     }
 
     // STAGE 00 TITLE
@@ -38,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const playIntro = () => {
         gameState.stage = 1;
         console.log(`STAGE: ${gameState.stage}. Intro ${gameState.intro}`);
-        showDialogue(`Stage ${gameState.stage}. Intro ${gameState.intro}`, "You are now entering the world of survival trivia...");
+        showDialogueFromData(`intro_${gameState.intro}`);
         gameState.intro++;       
     }
     // DIALOGUE BOX
@@ -51,12 +54,20 @@ document.addEventListener("DOMContentLoaded", async () => {
             nextStep();
         }, { once: true });
     };
+
+    function showDialogueFromData(key) {
+    const dialogue = dialogueSet[key];
+    if (!dialogue) return console.error(`No dialogue for key: ${key}`);
+
+    showDialogue(dialogue.header, dialogue.text);
+    }
+
     // CHECKPOINT
     const nextStep = () => {
         if (gameState.intro <=3) return playIntro();
         if (gameState.stage === 1) return setupGenreButtons();
         if (gameState.lives === 0) return endGame('died');
-        if (gameState.questionNumber >= gameState.questions.length) return (
+        if (gameState.questionNumber >= gameState.questionLimit) return (
             gameState.survived = true,
             endGame('survived'));
         updateImage(gameState.genre, gameState.lives, "a");
@@ -77,9 +88,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                 toggleVisibility('loading-icon');
                 gameState.genre = genreData.genre_name;
                 gameState.genreId = genreData.id;
-                gameState.creatureName = genreData.creature_name;
+                gameState.creatureName = genreData.creature_name.toLowerCase();
+                gameState.chapter = genreData.chapter;
                 console.log(gameState);
                 gameState.questions = await fetchQuestions(gameState.genre);
+                if (gameState.questions.length < 10) {
+                    gameState.questionLimit = gameState.questions.length
+                } else {
+                    gameState.questionLimit = 10;
+                }
                 updateImage(gameState.genre, 0, "a");
                 toggleVisibility('loading-icon');
                 setupDifficultyButtons();
@@ -93,12 +110,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         toggleVisibility('select-difficulty');
         document.querySelectorAll('.diff-select-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                gameState.difficulty = btn.dataset.diff;
+                gameState.difficulty = btn.dataset.diff.toUpperCase();
                 toggleVisibility('select-difficulty');
                 toggleVisibility("image-box");
                 
                 // STAGE 04 GENRE INTRO
-                showDialogue(`Chapter 01: The ${gameState.creatureName}`, `Creature: ${gameState.creatureName}. Spooky text.`);
+                showDialogueFromData(`chapter_${gameState.creatureName}`)
                 gameState.stage = 4;
                 console.log(`STAGE: ${gameState.stage}. Genre Intro`)
                 updateLives(gameState.lives);
@@ -132,7 +149,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const questionText = getEl("question-text");
 
         toggleVisibility("quiz-box");
-        questionHeader.textContent = `Question ${gameState.questionNumber + 1} / ${gameState.questions.length}`;
+        questionHeader.textContent = `Question ${gameState.questionNumber + 1} / ${gameState.questionLimit}`;
         questionText.textContent = q.question;
 
         console.log(`QUESTION ID: ${q.id}`);
@@ -155,13 +172,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             gameState.score++;
             updateScore(gameState.score);
             console.log(`STAGE: ${gameState.stage}. Dialogue`)
-            showDialogue("Correct", `The ${gameState.creatureName} is stunned by your knowledge.`);
+            showDialogueFromData(`correct_${gameState.score}`);
         } else {
             updateImage(gameState.genre, gameState.lives, "c");
             gameState.lives--;
             updateLives(gameState.lives);
             console.log(`STAGE: ${gameState.stage}. Dialogue`)
-            showDialogue("Incorrect", `The ${gameState.creatureName} takes a step forward...`);
+            showDialogueFromData(`incorrect_${gameState.creatureName}_${gameState.lives}`);
         }
 
         toggleVisibility('quiz-box');
