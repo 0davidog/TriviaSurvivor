@@ -6,53 +6,77 @@
 
     <div class="row">
 
-            <div class="col-12 mb-2">
-                <h2 class="menu-font">MY ACCOUNT</h2>
+            <div class="col-12">
+                <h2 class="menu-font">{{ player.username }}</h2>
             </div>
 
         </div>
-
-{% if user.is_authenticated %}
-
+<hr>
+{% if user == player %}
         <div class="row">
-
-            <div class="col-6 username-font text-end mb-2">
-                USERNAME:
+            <div class="col-12 text-end">
+                <p><small><em>Click Icon to change.</em></small></p>
             </div>
-            <div class="col-6 username-font text-start mb-2">
-                {{ user.username }}{% if user_data.nationality %}<img src="{{ user_data.nationality.flag }}" alt="{{ user_data.nationality }} flag">{% endif %}
-            </div>
-            
         </div>
+{% endif %}
 
         <div class="row">
             <div class="col-6 username-font text-end mb-2">
                 ICON:
             </div>
             <div class="col-6 text-start mb-2">
-                    <a href="{% url 'change_icon' %}">
+                    {% if user == player %}<a href="{% url 'change_icon' %}">{% endif %}
                         <img src="{{ user_data.user_icon.icon.url }}" alt="Player icon" class="player-icon">
                     </a>
             </div>
         </div>
-<hr>
+
         <div class="row mb-2">
-            <div class="col-6 username-font text-start mb-2">
-                BIO:
+            <div class="col-6 username-font text-end mb-2">
+                NATIONALITY:
             </div>
-            <div class="col-6 mb-2">
-                
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12 text-start mb-2">
-                {{ user_data.bio }}
+            <div class="col-6 text-start mb-2 username-font">
+                {{ user_data.nationality }}&nbsp;{% if user_data.nationality %}<img src="{{ user_data.nationality.flag }}" alt="{{ user_data.nationality }} flag">{% endif %}
             </div>
         </div>
+<hr>
+<div class="row">
+    <div class="col-12">
+        <h3>5 FILM FAVOURITES:</h3>
+    </div>
+    <div class="col-12 username-font">{{ user_data.fav_1|default:"Undecided" }} Dir. {{ user_data.fav_1.director|default:"Alan Smithee" }}</div>
+    <div class="col-12 username-font">{{ user_data.fav_2|default:"Undecided" }} Dir. {{ user_data.fav_2.director|default:"Alan Smithee" }}</div>
+    <div class="col-12 username-font">{{ user_data.fav_3|default:"Undecided" }} Dir. {{ user_data.fav_3.director|default:"Alan Smithee" }}</div>
+    <div class="col-12 username-font">{{ user_data.fav_4|default:"Undecided" }} Dir. {{ user_data.fav_4.director|default:"Alan Smithee" }}</div>
+    <div class="col-12 username-font">{{ user_data.fav_5|default:"Undecided" }} Dir. {{ user_data.fav_5.director|default:"Alan Smithee" }}</div>
 
+</div>
+<hr>
+<div class="row">
+    <div class="col-12">
+        <h3>GAME STATS:</h3>
+    </div>
+    <div class="col-6 username-font text-end">Games Played:</div>
+        <div class="col-6 username-font text-start">{{ stats.games_played }}</div>
+    <div class="col-6 username-font text-end">Games Survived:</div>
+        <div class="col-6 username-font text-start">{{ stats.games_won }}</div>
+            <div class="col-6 username-font text-end">Games Lost:</div>
+        <div class="col-6 username-font text-start">{{ stats.games_lost }}</div>
+                    <div class="col-6 username-font text-end">Average Score:</div>
+        <div class="col-6 username-font text-start">{{ stats.avg_score|default:"N/A" }}</div>
+                            <div class="col-6 username-font text-end">Favourite Chapter:</div>
+        <div class="col-6 username-font text-start">{{ most_played_genre|default:"None yet" }}</div>
+
+</div>
+<hr>
+{% if user == player and user.is_authenticated %}
             <div class="row mt-4">
-
+                <div class="col-12">
+        <h3>ACCOUNT SETTINGS:</h3>
+    </div>
+                <div class="col-12">
+                    <a class="btn main-menu-btn" href="{% url 'edit_profile' %}">Edit Profile Info</a>
+                </div>
                 <div class="col-12">
                     <a class="btn main-menu-btn" href="{% url 'account_email' %}">Manage Email</a>
                 </div>
@@ -62,6 +86,7 @@
                 </div>
 
             </div>
+            <hr>
 {% endif %}
-</div>
+
 {% endblock %}

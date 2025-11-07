@@ -13,23 +13,23 @@
   </div>
   <hr>
 
-  {% for user in users %}
+  {% for player in users %}
         <div class="row">
 
             <div class="col username-font">
                 {{ forloop.counter }}.&nbsp;
-                {{ user.username }}{% if user.userdata.nationality %}
-                            <img src="{{ user.userdata.nationality.flag }}" alt="{{ user_data.nationality }} flag">
+                <a href="{% url 'view_profile' player %}">{{ player.username }}</a>{% if player.userdata.nationality %}
+                            <img src="{{ player.userdata.nationality.flag }}" alt="{{ player.user_data.nationality }} flag">
                         {% endif %}
-                    <img src="{{ user.userdata.user_icon.icon.url }}" alt="Player icon" class="player-icon">
+                    <img src="{{ player.userdata.user_icon.icon.url }}" alt="Player icon" class="player-icon">
             </div>
 
-            <div class="col text-start">
+            <div class="col text-start username-font">
                         
-                Played: {{ user.games_played }}<br>
-                Survived: {{ user.games_won }}<br>
-                Died: {{ user.games_lost }}<br>
-                Avg Score: {{ user.avg_score|floatformat:1 }}<br>
+                Played: {{ player.games_played }}<br>
+                Survived: {{ player.games_won }}<br>
+                Died: {{ player.games_lost }}<br>
+                Avg Score: {{ player.avg_score|floatformat:1|default:"N/A" }}<br>
             </div>
 
         </div>

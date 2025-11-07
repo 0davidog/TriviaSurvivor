@@ -46,7 +46,7 @@ def index(request):
             user_data = None
 
 
-    genres = Genre.objects.all().order_by('id')
+    genres = Genre.objects.filter(published=True).order_by('id')
     questions = Question.objects.all()
 
     context = {

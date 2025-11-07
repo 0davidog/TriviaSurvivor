@@ -14,9 +14,10 @@ class Genre(models.Model):
     genre_name = models.CharField(max_length=100, unique=True)
     creature_name = models.CharField(max_length=100, blank=True)
     death_name = models.CharField(max_length=100, blank=True)
-    button = CloudinaryField('image', null=True)
-    chapter_number = models.IntegerField(null=True)
+    button = CloudinaryField('VHS Image', null=True, blank=True)
+    chapter_number = models.IntegerField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+    published = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.genre_name}"
@@ -46,7 +47,7 @@ class Film(models.Model):
         """
         Film reference.
         """
-        return f"{self.title} ({self.year}). Directed by {self.director}. {self.origin} | {self.genre}"
+        return f"{self.title} ({self.year})"
     
 
 class Question(models.Model):

@@ -11,7 +11,7 @@ def survivors(request):
         games_won=Count('games', filter=Q(games__survived=True)),
         games_lost=Count('games', filter=Q(games__survived=False)),
         avg_score=Avg('games__score'),
-    ).filter(games_played__gt=0).order_by('-avg_score')
+    ).filter().order_by('-avg_score')
 
     context = {
         'users': users,
@@ -22,7 +22,7 @@ def survivors(request):
 
 def genres(request):
 
-    genres = Genre.objects.all()
+    genres = Genre.objects.filter(published=True)
 
     context = {
         'genres': genres

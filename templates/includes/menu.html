@@ -27,7 +27,8 @@
         <div class="row player-info mb-2">
 
             <div class="col-12">
-                <a href="{% url 'view_profile' %}">
+                
+                <a href="{% if user.is_authenticated %}{% url 'view_profile' user %}{% else %}{% url 'account_login' %}{% endif %}">
                     <img src="{% if user.is_authenticated %}{{ user_data.user_icon.icon.url }}{% else %}{{ default_icon.icon.url }}{% endif %}" alt="Player icon" class="player-icon">
                 </a> 
             </div>
@@ -51,7 +52,7 @@
         </div>
 {% if user.is_authenticated %}
         <div class="col">
-            <a class="btn main-menu-btn" href="{% url 'view_profile' %}" id="profile-btn">MY ACCOUNT</a>
+            <a class="btn main-menu-btn" href="{% url 'view_profile' user %}" id="profile-btn">MY ACCOUNT</a>
         </div>
         {% endif %}
             <div class="col">
