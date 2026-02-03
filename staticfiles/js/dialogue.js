@@ -3,7 +3,7 @@
 export const dialogueSet = {
     title: {
         header: "Welcome",
-        text: `Trivia Survivor is a movie trivia quiz game focused on the horror genre. Answer questions correctly on the genre of your choice to survive the nightmare.`
+        text: `Trivia Survivor is a movie trivia quiz game focused on the horror genre. <br>Answer questions correctly on the genre of your choice to survive the nightmare.`
     },
     intro_1: {
         header: "Intro 1",

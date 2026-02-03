@@ -18,7 +18,7 @@ export const updateDialogue = (header, text) => {
     const h = getEl('dialogue-header');
     const t = getEl('dialogue-text');
     if (h) h.textContent = header;
-    if (t) t.textContent = text;
+    if (t) t.innerHTML = text;
 };
 
 export const updateLives = (num) => {
