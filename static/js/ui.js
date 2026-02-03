@@ -1,5 +1,12 @@
 // ui.js module - make sure script type="module" when linked.
 
+document.querySelectorAll('.genre-btn').forEach(el => {
+    const url = el.dataset.bg;
+    if (url) {
+        el.style.setProperty('--genre-bg', `url("${url}")`);
+    }
+});
+
 export const getEl = (id) => document.getElementById(id);
 
 export const toggleVisibility = (id) => {

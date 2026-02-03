@@ -205,7 +205,10 @@ nav {
 	height: 150px;
 	border: 1px solid #555555;
 	border-radius: 20px;
-	background: var(--genre-bg);
+	background-image: var(--genre-bg);
+	background-size: contain; 
+	background-position: center; 
+	background-repeat: no-repeat;
 }
 
 .genre-select-btn {

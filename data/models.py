@@ -25,7 +25,7 @@ class Genre(models.Model):
     @property
     def button_background(self):
         if self.button:
-            return f"background-image: url('{self.button.url}'); background-size: contain; background-position: center; background-repeat: no-repeat;"
+            return f"{self.button.url}"
         return ""
             
     
