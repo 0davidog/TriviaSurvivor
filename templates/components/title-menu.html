@@ -1,0 +1,15 @@
+<div class="row bottom-half hidden" id="title-menu">
+
+{% if user.is_authenticated %}
+    <div class="col-12 text-center">
+        <button class="btn main-menu-btn mb-2" id="play-btn">PLAY</button>
+        <a class="btn main-menu-btn" href="{% url 'account_logout' %}">LOG OUT</a>
+    </div>
+{% else %}
+    <div class="col-12 text-center">
+        <a class="btn main-menu-btn mb-2" href="{% url 'account_login' %}">LOG IN/REGISTER</a>
+        <a class="btn main-menu-btn" id="guest-btn">PLAY AS GUEST</a>
+    </div>
+{% endif %}
+
+</div>

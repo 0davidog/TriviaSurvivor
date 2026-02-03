@@ -1,0 +1,20 @@
+<div class="row select-game flex-column align-items-center justify-content-center text-center hidden" id="select-game">
+
+    <div class="col-12 mb-2">
+        <h2>SELECT GAME GENRE</h2>
+    </div>
+
+    {% for genre in genres %}
+    <div 
+    class="col-12 mb-2 genre-btn d-flex flex-column align-items-center justify-content-center"
+    data-creature="{{ genre.creature_name }}" 
+    data-bg="{{ genre.button_background }}"
+    >
+        <button class="btn main-menu-btn genre-select-btn" data-genre="{{ genre }}">{{ genre | upper }}</button>
+    </div>
+    <div class="col-12 mb-2">
+        <small><p>Genre Description: {{ genre.description}}</p></small>
+    </div>
+    {% endfor %}
+    
+</div>

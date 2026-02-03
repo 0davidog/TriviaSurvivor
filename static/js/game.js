@@ -49,3 +49,10 @@ export const updateImage = async (genre, imageNum, effect) => {
         console.error('Error updating image:', err);
     }
 };
+
+export const introScreen = () => {
+    const screenTag = getEl('creature-view');
+    screenTag.setAttribute("alt", `A television news report.`);
+    const imageURL = `${STATIC_URL}images/game/chapter0_image0_a.webp`;
+    screenTag.src = imageURL;
+}

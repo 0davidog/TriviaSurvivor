@@ -1,13 +1,15 @@
 // main.js module - make sure script type="module" when linked.
 
+// Module Imports:
 import { fetchAuthStatus, fetchQuestions, flagQuestion, renderMessage, fetchGenre, recordGame } from './api.js';
 import { toggleVisibility, updateDialogue, updateInfoBox, updateLives, updateScore, getEl } from './ui.js';
-import { gameState, resetGame, formatAnswer, updateImage } from './game.js';
+import { gameState, resetGame, formatAnswer, updateImage, introScreen } from './game.js';
 import { dialogueSet } from './dialogue.js';
 
+// Loading DOM Content:
 document.addEventListener("DOMContentLoaded", async () => {
 
-    // DOM elements
+    // Fetching DOM elements:
     const playBtn = getEl("play-btn");
     const guestBtn = getEl("guest-btn");
     const restartBtn = getEl("restart-btn");
@@ -17,6 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const comBtn = getEl("comment-btn");
     const comBox = getEl("comment-box");
 
+    // Label User as guest:
     let guest = true;
 
     // Fetch login state and username
@@ -30,20 +33,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         gameState.userName = "Guest";
     }
 
-    // STAGE 00 TITLE
-    const handlePlayClick = () => {
-        toggleVisibility("title-menu");
-        toggleVisibility("play-card");
-        toggleVisibility("image-box");
-        playIntro();
-    };
-    // STAGE 01 GAME INTRO
-    const playIntro = () => {
-        gameState.stage = 1;
-        console.log(`STAGE: ${gameState.stage}. Intro ${gameState.intro}`);
-        showDialogueFromData(`intro_${gameState.intro}`);
-        gameState.intro++;       
-    }
     // DIALOGUE BOX
     const showDialogue = (header, text) => {
         toggleVisibility("dialogue-box");
@@ -62,8 +51,31 @@ document.addEventListener("DOMContentLoaded", async () => {
     showDialogue(dialogue.header, dialogue.text);
     }
 
+    // STAGE 00 TITLE
+    showDialogueFromData("title");
+
+    const mainMenu = () => {
+        toggleVisibility("title-menu");
+    }
+
+    const handlePlayClick = () => {
+        toggleVisibility("title-menu");
+        playIntro();
+    };
+
+    // STAGE 01 GAME INTRO
+    const playIntro = () => {
+        introScreen();
+        gameState.stage = 1;
+        console.log(`STAGE: ${gameState.stage}. Intro ${gameState.intro}`);
+        showDialogueFromData(`intro_${gameState.intro}`);
+        gameState.intro++;       
+    }
+
+
     // CHECKPOINT
     const nextStep = () => {
+        if (gameState.stage === 0) return mainMenu();
         if (gameState.intro <=3) return playIntro();
         if (gameState.stage === 1) return setupGenreButtons();
         if (gameState.lives === 0) return endGame('died');
@@ -77,7 +89,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const setupGenreButtons = () => {
         gameState.stage = 2;
         console.log(`STAGE: ${gameState.stage}. Genre Select`);
-        toggleVisibility("image-box");
+        toggleVisibility("screen");
         toggleVisibility('select-game');
         
         document.querySelectorAll(".genre-select-btn").forEach(btn => {
@@ -112,7 +124,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             btn.addEventListener('click', () => {
                 gameState.difficulty = btn.dataset.diff.toUpperCase();
                 toggleVisibility('select-difficulty');
-                toggleVisibility("image-box");
+                toggleVisibility("screen");
                 
                 // STAGE 04 GENRE INTRO
                 showDialogueFromData(`chapter_${gameState.creatureName}`)

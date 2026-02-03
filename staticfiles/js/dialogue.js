@@ -1,6 +1,10 @@
 // dialogue.js module - make sure script type="module" when linked.
 
 export const dialogueSet = {
+    title: {
+        header: "Welcome",
+        text: `Trivia Survivor is a movie trivia quiz game focused on the horror genre. Answer questions correctly on the genre of your choice to survive the nightmare.`
+    },
     intro_1: {
         header: "Intro 1",
         text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`

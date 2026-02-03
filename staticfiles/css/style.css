@@ -198,6 +198,7 @@ nav {
 .quiz-text {
 	font-size: 0.8rem;;
 	background-color: rgba(0, 0, 0, 0.50);
+	border-radius: 10px;
 }
 
 .genre-btn {
@@ -205,15 +206,20 @@ nav {
 	height: 150px;
 	border: 1px solid #555555;
 	border-radius: 20px;
+	background-image: var(--genre-bg);
+	background-size: contain; 
+	background-position: center; 
+	background-repeat: no-repeat;
 }
 
 .genre-select-btn {
 	background-color: rgba(0, 0, 0, 0.50);
 }
 
-#image-box {
+#screen {
 	background-color: rgba(0, 0, 0, 0.50);
 	height: 200px;
+	border-radius: 10px;
 }
 #creature-view {
 	width: 100%;
