@@ -201,19 +201,16 @@ nav {
 	border-radius: 10px;
 }
 
-.genre-btn {
-	width: 250px;
-	height: 150px;
+.genre-img {
+	width: 315px;
 	border: 1px solid #555555;
 	border-radius: 20px;
-	background-image: var(--genre-bg);
-	background-size: contain; 
-	background-position: center; 
-	background-repeat: no-repeat;
 }
 
-.genre-select-btn {
-	background-color: rgba(0, 0, 0, 0.50);
+.genre-card {
+	border-radius: 20px;
+	height: 475px;
+	background-color: rgba(0, 0, 0, 0.25);
 }
 
 #screen {
