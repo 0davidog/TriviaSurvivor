@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             gameState.score++;
             updateScore(gameState.score);
             console.log(`STAGE: ${gameState.stage}. Dialogue`)
-            showDialogueFromData(`correct_${gameState.score}`);
+            showDialogueFromData(`correct_${gameState.creatureName}_${gameState.score}`);
         } else {
             updateImage(gameState.genre, gameState.lives, "c");
             gameState.lives--;

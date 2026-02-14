@@ -29,104 +29,184 @@ export const dialogueSet = {
         header: `Chapter 3: The Onryō`,
         text: `You missed the last train but fortified by beer and grilled snacks you decide to walk home. As you get close to your street, you notice something doesn’t feel right. A noise like radio static begins to build in your head, maybe it’s just the beers from earlier, or maybe the barrier between here and the spirit world has become thin and something malevolent and cursed comes this way...`
     },
-    correct_1: {
-        header: `Correct - 1 Point`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
-    },
-    correct_2: {
-        header: `Correct - 2 Points`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
-    },
-    correct_3: {
-        header: `Correct - 3 Points`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
-    },
-    correct_4: {
-        header: `Correct - 4 Points`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
-    },
-    correct_5: {
-        header: `Correct - 5 Points`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
-    },
-    correct_6: {
-        header: `Correct - 6 Points`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
-    },
-    correct_7: {
-        header: `Correct - 7 Points`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
-    },
-    correct_8: {
-        header: `Correct - 8 Points`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
-    },
-    correct_9: {
-        header: `Correct - 9 Points`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
-    },
-    correct_10: {
-        header: `Correct - 10 Points`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
-    },
     incorrect_zombie_4: {
-        header: `Incorrect - 4 lives`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
+        header: `Incorrect`,
+        text: `The shuffling grows louder. A shape drags itself into the weak light ahead. Milky eyes fix on you.`
     },
     incorrect_zombie_3: {
-        header: `Incorrect - 3 lives`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
+        header: `Incorrect`,
+        text: `It lurches forward, jaw working hungrily. You stumble back over overturned equipment.`
     },
     incorrect_zombie_2: {
-        header: `Incorrect - 2 lives`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
+        header: `Incorrect`,
+        text: `Rotten fingers claw at your sleeve. The stench of decay fills your lungs.`
     },
     incorrect_zombie_1: {
-        header: `Incorrect - 1 life`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
+        header: `Incorrect`,
+        text: `Its teeth snap inches from your throat. You feel its weight slam into you.`
     },
     incorrect_zombie_0: {
-        header: `Incorrect - No lives`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
+        header: `Incorrect`,
+        text: `The corpse sinks its teeth into your flesh. Darkness spreads faster than the infection.`
     },
     incorrect_psycho_4: {
-        header: `Incorrect - 4 lives`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
+        header: `Incorrect`,
+        text: `The masked shape steps into the light, something gleams in its hand.`
     },
     incorrect_psycho_3: {
-        header: `Incorrect - 3 lives`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
+        header: `Incorrect`,
+        text: `The shape moves closer, a permanent sadistic grin on a latex face.`
     },
     incorrect_psycho_2: {
-        header: `Incorrect - 2 lives`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
+        header: `Incorrect`,
+        text: `The raised blade catches the hallway light. Reflecting your distorted terrified face.`
     },
     incorrect_psycho_1: {
-        header: `Incorrect - 1 life`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
+        header: `Incorrect`,
+        text: `Mocking swipes reach within inches of your skin, tearing at clothing.`
     },
     incorrect_psycho_0: {
-        header: `Incorrect - No lives`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
+        header: `Incorrect`,
+        text: `The knife slides between your ribs. The night swallows all senses.`
     },
     incorrect_onryō_4: {
-        header: `Incorrect - 4 lives`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
+        header: `Incorrect`,
+        text: `The static grows louder. The streetlights flicker.`
     },
     incorrect_onryō_3: {
-        header: `Incorrect - 3 lives`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
+        header: `Incorrect`,
+        text: `Your phone screen glitches. Faint voices crackle from the speaker.`
     },
     incorrect_onryō_2: {
-        header: `Incorrect - 2 lives`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
+        header: `Incorrect`,
+        text: `Your limbs are held in place by an invisible force. Handprints burn on your skin.`
     },
-    incorrect_onyrō_1: {
-        header: `Incorrect - 1 life`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
+    incorrect_onryō_1: {
+        header: `Incorrect`,
+        text: `The air pressure chokes now. Fingers creep into your mind.`
     },
     incorrect_onryō_0: {
-        header: `Incorrect - No lives`,
-        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, autem pariatur sit ratione rem quis magni porro quae inventore, deserunt delectus, alias incidunt voluptatem quibusdam harum exercitationem esse suscipit placeat.`
+        header: `Incorrect`,
+        text: `A wave of fear freezes your body into a contorted statue as the curse consumes you.`
+    },
+    correct_zombie_1: {
+        header: `Correct`,
+        text: `The walking corpse freezes, a hint of confusion in its rotten features.`
+    },
+    correct_zombie_2: {
+        header: `Correct`,
+        text: `You're certainly no zombie. Keep it up!`
+    },
+    correct_zombie_3: {
+        header: `Correct`,
+        text: `Your knowledge seems to strike the creature; it pauses its advance.`
+    },
+    correct_zombie_4: {
+        header: `Correct`,
+        text: `You know your stuff; the corpse almost looked impressed for a moment.`
+    },
+    correct_zombie_5: {
+        header: `Correct`,
+        text: `“...brains.”`
+    },
+    correct_zombie_6: {
+        header: `Correct`,
+        text: `A zombie apocalypse is no match for mind like yours.`
+    },
+    correct_zombie_7: {
+        header: `Correct`,
+        text: `Impressive, you once again stop the creature in its tracks.`
+    },
+    correct_zombie_8: {
+        header: `Correct`,
+        text: `Its rotten jaws snap at the air in confusion.`
+    },
+    correct_zombie_9: {
+        header: `Correct`,
+        text: `The creature stalls, you can do this!`
+    },
+    correct_zombie_10: {
+        header: `Correct`,
+        text: `Well, done. No flies on you.`
+    },
+    correct_psycho_1: {
+        header: `Correct`,
+        text: `The shadow halts, for a moment you see something like doubt.`
+    },
+    correct_psycho_2: {
+        header: `Correct`,
+        text: `The predatory advance pauses. You're no easy prey.`
+    },
+    correct_psycho_3: {
+        header: `Correct`,
+        text: `The butcher is stunned; you may yet survive this.`
+    },
+    correct_psycho_4: {
+        header: `Correct`,
+        text: `Great. The engine of your mind starts first time.`
+    },
+    correct_psycho_5: {
+        header: `Correct`,
+        text: `The monster seems less confident with reach correct answer.`
+    },
+    correct_psycho_6: {
+        header: `Correct`,
+        text: `Good answer, it almost dropped its knife with one.`
+    },
+    correct_psycho_7: {
+        header: `Correct`,
+        text: `You can imagine the look of confusion on its real face.`
+    },
+    correct_psycho_8: {
+        header: `Correct`,
+        text: `The ripper falters. Keep it up!`
+    },
+    correct_psycho_9: {
+        header: `Correct`,
+        text: `Nice! You hear a grunt of frustration behind the mask.`
+    },
+    correct_psycho_10: {
+        header: `Correct`,
+        text: `Answered with the confidence of all the best final girls.`
+    },
+    correct_onryō_1: {
+        header: `Correct`,
+        text: `Good. The pressure feels lighter with the correct answer.`
+    },
+    correct_onryō_2: {
+        header: `Correct`,
+        text: `The curse stops its advance.`
+    },
+    correct_onryō_3: {
+        header: `Correct`,
+        text: `The static is less intense, you can think clearer now.`
+    },
+    correct_onryō_4: {
+        header: `Correct`,
+        text: `Your mind is strong. You can resist this.`
+    },
+    correct_onryō_5: {
+        header: `Correct`,
+        text: `You wield your knowledge like a protective charm.`
+    },
+    correct_onryō_6: {
+        header: `Correct`,
+        text: `A spirit like yours is not easy darkened.`
+    },
+    correct_onryō_7: {
+        header: `Correct`,
+        text: `Excellent. You tighten your grip on yourself.`
+    },
+    correct_onryō_8: {
+        header: `Correct`,
+        text: `You feel the grip on your limbs relax.`
+    },
+    correct_onryō__9: {
+        header: `Correct`,
+        text: `This thing should return to whatever well it crawled out of.`
+    },
+    correct_onryō_10: {
+        header: `Correct`,
+        text: `Nice! You're like a trivia exorcist.`
     },
 }                                                         
