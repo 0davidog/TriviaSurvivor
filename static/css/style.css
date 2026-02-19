@@ -2,6 +2,7 @@
 
 /* Importing League Gothic Font for the title from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=League+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 
 /* Styling the body */
 body {
@@ -10,7 +11,8 @@ body {
 	background-attachment: fixed;
 	color: #ffffff;
 	text-shadow: 2px 2px 4px #000000;
-	font-family: 'Courier New', monospace;
+	font-family: "Special Elite", system-ui;
+	font-size: 0.9rem;
 }
 
 /* Setting font and size of all h1 elements */
@@ -288,4 +290,9 @@ img {
 	align-items: top; 
 	width: 339px;
 	min-height: 326px;
+}
+
+.text-box {
+	background-color: rgba(0, 0, 0, 0.50);
+	border-radius: 10px;
 }
