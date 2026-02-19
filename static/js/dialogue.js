@@ -201,7 +201,7 @@ export const dialogueSet = {
         header: `Correct`,
         text: `You feel the grip on your limbs relax.`
     },
-    correct_onryō__9: {
+    correct_onryō_9: {
         header: `Correct`,
         text: `This thing should return to whatever well it crawled out of.`
     },
