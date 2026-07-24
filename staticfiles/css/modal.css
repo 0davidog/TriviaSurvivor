@@ -1,0 +1,20 @@
+.modal {
+    display: none; /* Hidden initially */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(187, 23, 23, 0.95);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: transparent;
+    border: none;
+    width: 300px;
+    text-align: center;
+    position: relative;
+}

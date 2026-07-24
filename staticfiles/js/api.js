@@ -103,7 +103,6 @@ export async function flagQuestion(question, comment, author) {
  * @returns 
  */
 export function renderMessage(level, text) {
-    console.log(level, text);
     const div = getEl("msg-container");
     let iconType = "";
 
@@ -121,8 +120,10 @@ export function renderMessage(level, text) {
         iconType = "fa-bug";
     }
     const msg = document.createElement("div");
-    msg.className = `${level} alert alert-dismissible fade show text-center`;  // matches Django's "success", "error", etc.
-    msg.innerHTML = `<i class="${level} fa-solid ${iconType}"></i> ${text}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="${level} fa-regular fa-circle-xmark"></i></button>`;
+
+    msg.className = `${level} alert alert-dismissible fade show`;  // matches Django's "success", "error", etc.
+
+    msg.innerHTML = `<button type="button" data-bs-dismiss="alert" aria-label="Close" class="btn-close"></button><h3 class="title-font"><i class="fa-solid ${iconType}" id="msg-icon"></i> ${level}!</h3><hr><p>${text}</p>`;
     msg.role = "alert";
     div.appendChild(msg);
     console.log(msg)

@@ -10,15 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Open modal
     menuBtn.addEventListener("click", function () {
         menuModal.style.display = "flex";
-        menuBtn.style.display = "none";
-        closeBtn.style.display = "block";
     });
 
     // Close modal
     closeBtn.addEventListener("click", function () {
         menuModal.style.display = "none";
-        closeBtn.style.display = "none";
-        menuBtn.style.display = "block";
     });
 
     // Close modal if user presses esc key
@@ -26,23 +22,17 @@ document.addEventListener("DOMContentLoaded", function () {
         if (e.key === "Escape") {
             if (menuModal.style.display === "flex") {
                 menuModal.style.display = "none";
-                closeBtn.style.display = "none";
-                menuBtn.style.display = "block";
             } else {
                 menuModal.style.display = "flex";
-                menuBtn.style.display = "none";
-                closeBtn.style.display = "block";
             }   
         }
-    }, { once: true });
+    });
 
     // Close modal if user clicks outside the modal content
     window.addEventListener("click", function (event) {
         if (event.target === menuModal) {
             menuModal.style.display = "none";
-            closeBtn.style.display = "none";
-            menuBtn.style.display = "block";
         }
-    }, { once: true });
+    });
  
 });

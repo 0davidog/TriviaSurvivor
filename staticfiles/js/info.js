@@ -14,8 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Close modal
     closeBtn.addEventListener("click", function () {
         infoModal.style.display = "none";
-        closeBtn.style.display = "none";
-        menuBtn.style.display = "block";
     });
 
 });

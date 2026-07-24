@@ -1,0 +1,27 @@
+.alert {
+    position: fixed;
+	top: 0px;
+	border-radius: 10px;
+	width: 200px;
+    margin: 5px;
+}
+
+.alert.success {
+	background-color: var(--green);
+}
+
+.alert.error {
+	background-color: var(--red);
+}
+
+.alert.warning {
+	background-color: var(--yellow);
+}
+
+.alert.info {
+	background-color: var(--blue);
+}
+
+.alert.debug {
+	background-color: var(--gray);
+}

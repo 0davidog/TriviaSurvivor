@@ -1,0 +1,15 @@
+:root {
+	--league: 'League Gothic', sans-serif;
+	--elite: "Special Elite", system-ui, sans-serif;
+
+	--outline: -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000;
+
+	--bg-color: #1b1464;
+	--green: #198754;
+	--red: #dc3545;
+	--yellow: #ffc107;
+	--blue: #0d6efd;
+	--black: #000;
+	--white: #fff;
+	--gray: #555;
+}

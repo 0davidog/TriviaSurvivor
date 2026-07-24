@@ -2,43 +2,36 @@
 <!-- Modal Container -->
 <div id="menu-modal" class="modal">
 
-    <div class="container modal-content">
+    <div class="modal-content">
+        <div class="align-end"><button id="close-btn" class="btn">Close <i class="fa-solid fa-xmark"></i></button></div>
         
-        <div class="row mb-2">
-            <div class="col">
-                <h2 class="menu-font">ESCAPE MENU</h2>
-            </div>
-        </div>
-
         <hr>
-        
-        <div class="row">
 
-            <div class="col-12 username-font">
-                {% if user.is_authenticated %}
-                        {{ user }} {% else %} Guest {% endif %}
-                        {% if user_data.nationality %}
-                            <img src="{{ user_data.nationality.flag }}" alt="{{ user_data.nationality }} flag">
-                        {% endif %}
+        
+        <h2 class="title-font">ESCAPE MENU <i class="fa-solid fa-person-through-window"></i></h2>
+
+        <div class="player-box">
+            <div class="username-font">
+                Player: {% if user.is_authenticated %}{{ user }}{% else %}Guest{% endif %}
+                {% if user_data.nationality %}
+                <img src="{{ user_data.nationality.flag }}" alt="{{ user_data.nationality }} flag">
+                {% endif %}
             </div>
 
-        </div>
 
-        <div class="row player-info mb-2">
-
-            <div class="col-12">
+            <div>
                 
                 <a href="{% if user.is_authenticated %}{% url 'view_profile' user %}{% else %}{% url 'account_login' %}{% endif %}">
                     <img src="{% if user.is_authenticated %}{{ user_data.user_icon.icon.url }}{% else %}{{ default_icon.icon.url }}{% endif %}" alt="Player icon" class="player-icon">
                 </a> 
             </div>
-
         </div>
-        
-        
-        <hr>
 
-        <div class="row mb-2">{% if user.is_authenticated %}
+        
+        
+
+        <hr>
+        {% if user.is_authenticated %}
             <div class="col">
                 <a class="btn main-menu-btn" href="{% url 'account_logout' %}">LOG OUT</a>
             </div>

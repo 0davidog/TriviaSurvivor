@@ -1,0 +1,16 @@
+.carousel {
+	width: 300px;
+	text-align: center;
+}
+
+.slide {
+	display: none;
+}
+
+.slide.active {
+	display: block;
+}
+
+.carousel-buttons {
+	grid-template-columns: repeat(3, 1fr);
+}

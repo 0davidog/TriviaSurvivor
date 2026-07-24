@@ -1,37 +1,19 @@
-<div class="row select-game flex-column align-items-center justify-content-center text-center hidden" id="select-game">
-    <div class="row">
-        <div class="col">
-            <h1>Choose Genre</h1>
+<div class="carousel hidden" id="select-game">
+
+    <h1 class="title-font">Choose Genre</h1>
+
+        {% for genre in genres %}
+        <div class="slide {% if forloop.first %}active{% endif %}">
+            <img src="{{ genre.button_background}}" class="genre-img" alt="">
+            <h1 class="title-font">{{ genre | upper }}</h1>
+            <button class="btn main-menu-btn genre-select-btn" data-genre="{{ genre }}">Select</button>
         </div>
-    </div>
-    
-    <div id="genreCarousel" class="carousel slide genre-card mb-2" data-bs-ride="false">
-        <div class="carousel-inner">
+        {% endfor %}
 
-            {% for genre in genres %}
-            <div class="row carousel-item {% if forloop.first %}active{% endif %}">
-                <div class="col"><img src="{{ genre.button_background}}" class="genre-img" alt=""></div>
-                
-                <div class="genre-text col">
-                    <h1>{{ genre | upper }}</h1>
-                    <div class="col text-start">
-                        <p><em><small>{{ genre.description }}</small></em></p>
-                    </div>
-                </div>
-                
-                <div class="col"><button class="btn main-menu-btn genre-select-btn" data-genre="{{ genre }}">Select</button></div>
-            </div>
-            {% endfor %}
-
-        </div>
+    <div class="container carousel-buttons">
+        <div><button class="btn" id="prev">&lt;</button></div>
+        <div></div>
+        <div><button class="btn" id="next">&gt;</button> </div>
     </div>
-    <div class="row">
-        <div class="col-6 text-start"><button class="btn" type="button" data-bs-target="#genreCarousel" data-bs-slide="prev"><strong>&lt;</strong> 
-  </button></div>
-        <div class="col-6 text-end"><button class="btn" type="button" data-bs-target="#genreCarousel" data-bs-slide="next">&gt;
-  </button></div>
-    </div>
-      
 
-  
 </div>

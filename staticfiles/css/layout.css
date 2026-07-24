@@ -1,0 +1,63 @@
+
+.hidden {
+	display: none;
+}
+
+.container {
+	display: grid;
+	justify-content: center;
+	align-content: center;
+	justify-items: center;
+	align-items: center;
+    text-align: center;
+}
+
+.content-box {
+	min-height: 100vh;
+	width: 100vw;
+}
+
+.nav-bar {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 100%;
+	padding: 5px;
+	justify-content: end;
+	z-index: 1;
+}
+
+.counters {
+	position: relative;
+	top: -35px;
+}
+
+.align-start {
+    text-align: start;
+}
+
+.align-end {
+    text-align: end;
+}
+
+.align-center {
+	text-align: center;
+}
+
+.user-card {
+    grid-template-columns: repeat(2, 1fr);
+    border: 1px solid var(--gray);
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.user-card .header {
+    grid-column: 1 / span 2;
+    width: 100%;
+    border-bottom: 1px solid var(--gray);
+    margin-bottom: 5px;
+}
+
+.flag-buttons {
+	grid-template-columns: repeat(2, 1fr);
+}
